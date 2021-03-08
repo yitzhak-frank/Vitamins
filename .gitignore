@@ -1,0 +1,9 @@
+vitamins-api/node_modules
+vitamins/node_modules
+vitamins-api/config
+
+vitamins/.DS_Store
+vitamins/.env.local
+vitamins/.env.development.local
+vitamins/.env.test.local
+vitamins/.env.production.local

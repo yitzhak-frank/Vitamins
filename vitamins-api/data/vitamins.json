@@ -1,0 +1,93 @@
+[
+    {
+        "name": "Vitamin A",
+        "description": "Retinol",
+        "image": "../images/vitamins_list/Vitamin-A.jpg",
+        "price": 100,
+        "more_info": "Vitamin A is a fat-soluble vitamin. Its physiological role is related to vision and maintenance of epithelial tissue. Prolonged deficiency of vitamin A leads to xerophthalmia (dry eye) for which the initial symptom is the night blindness. Deficiencies of vitamin A are known to be common in patients with primary biliary cirrhosis and chronic cholestatic liver diseases. Scientific research referring to therapeutic uses of vitamin A covers such areas as age-related macular degradation, retinitis pigmentosa, diabetes, HIV, measles, urinary tract infections and cancer. The prevention of bronchopulmonary dysplasia in newborn infants is an orphan designation of retinol."
+    },{
+        "name": "Pro-vitamin A",
+        "description": "Beta-carotene",
+        "image": "../images/vitamins_list/Pro-vitamin-A.jpg",
+        "price": 100,
+        "more_info": "Beta-carotene, a precursor to vitamin A, is mainly used in the treatment of conditions associated with vitamin A deficiency. Beta-carotene is used orally to reduce the photosensitivity reactions in patients with erythropoietic protoporphyria. More therapeutic uses of beta-carotene are reported within clinical research and these include cardiovascular diseases, asthma, AIDS, Alzheimer’s disease and cancer. "
+    },{
+        "name": "Vitamin B1",
+        "description": "Thiamine",
+        "image": "../images/vitamins_list/Vitamin-B1.jpg",
+        "price": 100,
+        "more_info": "Vitamin B1 (thiamine) is used to treat beriberi (a condition caused by prolonged lack of vitamin B1). Conditions such as Crohn’s disease, anorexia, alcoholism and kidney dialysis may lead to a thiamine deficiency. Research points to the potential role of thiamine in such diseases as diabetes, heart failure, Alzheimer’s disease and depression. Together with other B vitamins, thiamine is reported in clinical research in the treatment of neurologic disorders, including neuropathic pain. Emerging scientific evidence also suggests the potential efficacy of thiamine in lowering the progression of kidney diseases in patients with type 2 diabetes."
+    },{
+        "name": "Vitamin B2",
+        "description": "Riboflavin",
+        "image": "../images/vitamins_list/Vitamin-B2.jpg",
+        "price": 100,
+        "more_info": "Vitamin B2 is used in the treatment and prevention of riboflavin deficiency that is called ariboflavinosis. There are open studies reporting potential benefits of high-dose riboflavin in prophylaxis of migraine attacks. Recent clinical research examines the role of riboflavin in modulation of blood pressure in population with specific genotype. Emerging science on vitamin B2 covers inflammatory bowel diseases with regards to the potential role of riboflavin as a prebiotic agent."
+    },{
+        "name": "Vitamin B3",
+        "description": "Niacinamide/niacin",
+        "image": "../images/vitamins_list/Vitamin-B3.jpg",
+        "price": 100,
+        "more_info": "Niacin and niacinamide are two forms of vitamin B3. Niacinamide is used for preventing vitamin B3 deficiency and related conditions, such as pellagra, and in the treatment of skin conditions like acne vulgaris. Niacin is known for its antihyperlipidemic action. "
+    },{
+        "name": "Vitamin B5",
+        "description": "Pantothenic acid and its calcium salt, calcium D-pantothenate",
+        "image": "../images/vitamins_list/Vitamin-B5.jpg",
+        "price": 100,
+        "more_info": "Pantothenic acid is often used in combination with other B vitamins in complex formulations. The main pharmaceutical application for vitamin B5 is in skin disorders and wound healing. Orphan indication for pantothenate kinase is associated with neurodegeneration."
+    },{
+        "name": "Pro-vitamin B5",
+        "description": "Dexpanthenol",
+        "image": "../images/vitamins_list/Vitamin-Pro-vitamin-B5.jpg",
+        "price": 100,
+        "more_info": "Dexpanthenol is a stable alcoholic analogue of panthoteic acid and is widely used in treatment of skin disorders. Topical dexpanthenol has strong moisturizing efficacy, it activates fibroblast proliferation and enhances the wound healing process."
+    },{
+        "name": "Vitamin B6",
+        "description": "Pyridoxine",
+        "image": "../images/vitamins_list/Vitamin-B6.jpg",
+        "price": 100,
+        "more_info": "Vitamin B6 is used in the treatment and prevention of pyridoxine deficiency conditions. Pyridoxine is known to play a role in neurotransmission and its potential application in conditions such as Alzheimer’s disease, attention deficit-hyperactivity disorder (ADHD), Down’s syndrome and autism are under investigation. Within central nervous system, the use of pyridoxin is common in treatment of pyridoxine-dependent epilepsy. In combination with other B vitamins, it has been shown in several clinical studies to potentiate the analgesic effect of NSIDs in patients with pain of different origins, including neuropathic pain. In combination with doxylamine, pyridoxin is used in management of nausea and vomiting in early stages of pregnancy. Pyridoxin is also used in prophylaxis of isoniazid induced peripheral neuritis and in treatment of acute isoniazid toxicity. <br> Pyridoxin use is reported in several CNS disorders including pyridoxine dependent epilepsy. In combination with other B vitamins it is used in combined treatment of peripheric neuropathies. "
+    },{
+        "name": "Vitamin B7",
+        "description": "Biotin",
+        "image": "../images/vitamins_list/Vitamin-B7.jpg",
+        "price": 100,
+        "more_info": "Vitamin B7 is used for preventing and treating biotin deficiency. Clinical research reports potential use of biotin in multiple sclerosis. Oral formulations containing biotin are used in hair loss and brittle nails. <br> A recent phase III clinical trial on biotin stated evidence of the efficacy of high dose biotin in the treatment of multiple sclerosis."
+    },{
+        "name": "Vitamin B9",
+        "description": "Folic acid",
+        "image": "../images/vitamins_list/Vitamin-B9.jpg",
+        "price": 100,
+        "more_info": "Medical use of vitamin B9 is primarily for the treatment of folic acid deficiency and certain types of anemia (lack of red blood cells). Together with vitamins B6 and B12, it has been shown to reduce the risk of age-related macular degeneration. Folic acid together with cyancobalamine reduces blood homocysteine concentrations. Folate is critical for nucleotide synthesis, and intake of dietary folic acid is credited with reduced incidences of neural tube defects in infants. Several case-control studies have shown that folate may protect against neoplasia in ulcerative colitis."
+    },{
+        "name": "Vitamin B12",
+        "description": "Cyanocobalamin",
+        "image": "../images/vitamins_list/Vitamin-B12.jpg",
+        "price": 100,
+        "more_info": "Vitamin B12 (cyanocobalamin and its derivatives) is indicated in the treatment of pernicious anemia, and preventing and treating vitamin B12 deficiency. Deficiency of vitamin B12 leads to demyelination and other neurological damage. In combination with other B vitamins it has been shown to potentiate the analgesic effect of NSIDs in patients with pain of different origins, including neuropathic pain. When used with vitamins B6 and B9, vitamin B12 has been shown to reduce the risk of age-related macular degeneration. Cyanocobalamin tougher with folic acid reduces blood homocysteine concentrations. It is also used to treat cyanide poisoning. "
+    },{
+        "name": "Vitamin C",
+        "description": "Ascorbic acid",
+        "image": "../images/vitamins_list/Vitamin-C.jpg",
+        "price": 100,
+        "more_info": "Prevention and treatment of scurvy is a traditional use of vitamin C, which now occurs relatively rarely. Vitamin C is mostly used for preventing and treating the common cold and increasing immune function in patients with different diseases – primarily respiratory tract infections. Clinical reports highlight potential role of vitamin C in Arterial hypertension, atherosclerosis and cancer. In some clinical studies, high-dose vitamin C has been shown to improve quality of life in cancer patients, although more evidence is needed to conclusively demonstrate these effects. There are clinical studies referring to beneficial role of vitamin C in cardiovascular health field, including arterial hypertension and atherosclerosis. "
+    },{
+        "name": "Vitamin D",
+        "description": "Cholecalciferol",
+        "image": "../images/vitamins_list/Vitamin-D.jpg",
+        "price": 100,
+        "more_info": "Vitamin D and its derivatives have a wide range of clinical applications. The main indications are prophylaxis and treatment of osteoporosis, prevention of rickets and osteomalacia. Other possible therapeutic applications that are currently investigated for vitamin D include cardiovascular disease, diabetes, cancer, infections, multiple sclerosis, psoriasis and respiratory health, as well as other conditions. "
+    },{
+        "name": "Vitamin E",
+        "description": "α-tocopherol",
+        "image": "../images/vitamins_list/Vitamin-E.jpg",
+        "price": 100,
+        "more_info": "The main therapeutic applications of vitamin E are the result of its prominent antioxidant effect. Major signs of vitamin E deficiency are the development of myopathic and neurological disorders. Therapeutic benefits of tocopherol reported in scientific publications relate to ischemic heart disease, and atherosclerosis, arterial hypertension, diabetes, NAFLD, cognitive performance, cancer, and more. <br> Vitamin E is currently used in the treatment of non-alcoholic fatty liver disease (NAFLD), and non-alcoholic steatohepatitis (NASH), reporting significant improvement in liver function and histologic changes in patients with NAFLD/NASH."
+    },{
+        "name": "Vitamin K",
+        "description": "Phytomenadione",
+        "image": "../images/vitamins_list/Vitamin-K.jpg",
+        "price": 100,
+        "more_info": "Vitamin K is an essential co-factor for the synthesis of prothrombin (factor II) and other blood coagulation factors. Vitamin K is used in treatment and prevention of hemorrhage due to vitamin K deficiency, coagulation disorders that are due to the faulty formation of factors II, VII, IX and X. There is an evidence for the role of vitamin K in bone development and its efficacy in osteoporosis and fractures prevention was reported in clinical science. "
+    }
+]
