@@ -128,13 +128,16 @@ const AddAndEditProd = ({prod, fn: {closeForm, reRender}}) => {
                     </div>
                     <div className="form-group col-sm-12 col-md-6">
                         <label className="d-block text-right" htmlFor="image">תמונה:</label>
-                        <input
-                            type="file" id="image" name="image"
-                            className={inputsFocus.image? "form-control shadow": "form-control"} 
-                            onChange={({target}) => displayNewImage(target)}
-                            onFocus={() => setInputsFocus(inputs => ({...inputs, image: true}))}
-                            onBlur={() => setInputsFocus(inputs => ({...inputs, image: false}))}
-                        />
+                        <div className="custom-file">
+                            <input
+                                type="file" id="image" name="image"
+                                className={inputsFocus.image? "shadow custom-file-input": "custom-file-input"} 
+                                onChange={({target}) => displayNewImage(target)}
+                                onFocus={() => setInputsFocus(inputs => ({...inputs, image: true}))}
+                                onBlur={() => setInputsFocus(inputs => ({...inputs, image: false}))}
+                            />
+                            <label for="image" class="custom-file-label">בחר תמונה</label>
+                        </div>
                     </div>
                     <div className="d-md-none col-12" style={styles.image}></div>
 

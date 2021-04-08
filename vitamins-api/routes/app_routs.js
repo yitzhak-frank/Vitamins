@@ -1,4 +1,5 @@
 const fileUpload  = require('express-fileupload');
+const path        = require('path');
 const indexRouter = require('./index');
 const prodsRouter = require('./prods');
 const usersRouter = require('./users');
@@ -10,7 +11,7 @@ exports.routesInit = (app) => {
     app.use('/users', usersRouter);
     app.use('/carts', cartsRouter);
 
-    app.use((req, res) => res.status(404).json({massage: '404 page not found'}));
+    app.use((req, res) => res.sendFile(path.join(__dirname, '..', 'public', 'index.html')));
 }
 
 exports.fileUploadAccess = (app) => app.use(fileUpload({limits: {fileSize: 50 * 1024 * 1024}}));

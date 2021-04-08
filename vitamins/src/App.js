@@ -57,12 +57,12 @@ function App() {
         {indexes.login && <SignIn/>}
         <Switch>
           <Route path="/home" exact component={Home}/>
-          <Route path="/products" component={Products}/>
-          <Route path="/sign-up" component={SignUp}/>
+          <Route path="/products" exact component={Products}/>
+          <Route path="/sign-up" exact component={SignUp}/>
           <Route path="/page-not-found" render={() => pageNotFound}/>
-          <ProtectedRoute path="/admin/prods" component={AdminApp} table={'prods'}></ProtectedRoute>
-          <ProtectedRoute path="/admin/users" component={AdminApp} table={'users'}></ProtectedRoute>
-          <Route path="/admin"><Redirect to="/admin/prods"/></Route>
+          <ProtectedRoute path="/admin/prods" exact component={AdminApp} table={'prods'}></ProtectedRoute>
+          <ProtectedRoute path="/admin/users" exact component={AdminApp} table={'users'}></ProtectedRoute>
+          <Route path="/admin" exact><Redirect to="/admin/prods"/></Route>
           <Route path="/" exact><Redirect to="/home"/></Route>
           <Redirect to="/page-not-found"/>
         </Switch>
