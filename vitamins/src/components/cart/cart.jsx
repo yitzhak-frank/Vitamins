@@ -1,6 +1,5 @@
 import store from "../../redux-store/redux-store";
 import CartItem from "./cartItem";
-import ProdDetails from "../products/prodDetails";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
@@ -16,7 +15,6 @@ const Cart = ({cart: _cart, prods, selectedItems: _selectedItems, editCart, sele
     const[products, setProducts] = useState(prods);
     const[cartProds, setCartProds] = useState([]);
     const[selectedItems, setSelectedItems] = useState(_selectedItems);
-    const[prod, setProd] = useState(null);
     const history = useHistory();
 
     const styles = {
@@ -104,15 +102,7 @@ const Cart = ({cart: _cart, prods, selectedItems: _selectedItems, editCart, sele
         return finalPayment;
     }
 
-    const closeCart = () => store.dispatch(indexesManager(CART_INDEX, false))
-
-    const hideProd = () => setProd(null);
-
-    const showProd = ({target:{attributes: {prodid: {nodeValue: prodId}}}}) => {
-        if(history.location.pathname !== '/products') return;
-        let prod = products.filter(prod => prod.name === prodId);
-        setProd(...prod);
-    }
+    const closeCart = () => store.dispatch(indexesManager(CART_INDEX, false));
 
     return (
         <div className="cart">
@@ -137,7 +127,7 @@ const Cart = ({cart: _cart, prods, selectedItems: _selectedItems, editCart, sele
                     cartProds.map(item => <CartItem 
                         key={item._id} 
                         item={item} 
-                        fn={{handelChangeAmount, handelRemoveFromCart, handleSelectItem, showProd}}
+                        fn={{handelChangeAmount, handelRemoveFromCart, handleSelectItem}}
                         style={selectedItems.includes(item._id)? styles.selectedItem: styles.notSelectedItem} 
                     />):''}
                 </div>
@@ -161,11 +151,6 @@ const Cart = ({cart: _cart, prods, selectedItems: _selectedItems, editCart, sele
             </>
             }
             <Link to="/products" className="cart-empty btn btn-dark w-100" onClick={closeCart}>המשך בקניות</Link>
-            {prod &&
-                <div className="dark justify-content-center align-items-center">
-                    <ProdDetails prod={prod} fn={{hideProd, handleAddToCart}}/>
-                </div>
-            }
         </div>
     );
 }

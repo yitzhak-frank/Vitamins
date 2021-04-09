@@ -9,13 +9,14 @@ import AdminApp from './components/admin/adminApp';
 import Products from './components/products/products';
 import reduxIndex from './redux-store/index.redux';
 import { Provider } from "react-redux";
-import ProtectedRoute from './components/protectedRoute';
 import { ToastContainer } from 'react-toastify';
 import { checkParentsClass } from './services/generalFn';
 import { useState, useEffect } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { checkIfAdmin, getCurrentUser } from './services/usersService';
 import SignUp from './components/signup';
+import ProdDetails from './components/products/prodDetails';
+import ProtectedRoute from './components/protectedRoute';
 
 const { getProducts, getCart, indexesManager, store, CART_INDEX, LOGIN_INDEX, USER_INDEX, ADMIN_INDEX } = reduxIndex;
 
@@ -58,6 +59,7 @@ function App() {
         <Switch>
           <Route path="/home" exact component={Home}/>
           <Route path="/products" exact component={Products}/>
+          <Route path="/product-details/:id" component={ProdDetails}/>
           <Route path="/sign-up" exact component={SignUp}/>
           <Route path="/page-not-found" render={() => pageNotFound}/>
           <ProtectedRoute path="/admin/prods" exact component={AdminApp} table={'prods'}></ProtectedRoute>

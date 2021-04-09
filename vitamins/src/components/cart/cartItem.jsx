@@ -1,12 +1,16 @@
+import { Link } from "react-router-dom";
+
 const CartItem = ({
     item: {name, image, price, payment, amount, _id: prodId}, 
-    fn: {handelChangeAmount, handelRemoveFromCart, handleSelectItem, showProd},
+    fn: {handelChangeAmount, handelRemoveFromCart, handleSelectItem},
     style
 }) => {
     return(
         <div className="col-12 cart-item">
             <div className="m-1 p-3 shadow cart-item-body" style={style} onClick={(e) => handleSelectItem(e, prodId)}>
-                <img className="float-left w-25 pb-1 cart-img" src={image} alt="Vitamin" prodid={name} onClick={showProd}/>
+                <Link to={`/product-details/${prodId}`}>
+                    <img className="float-left w-25 pb-1 cart-img" src={image} alt="Vitamin"/>
+                </Link>
                 <div className="w-75 pl-4">
                     <i className="fas fa-trash-alt float-right" onClick={() => handelRemoveFromCart(prodId)}></i>
                     <h6 className="text-success">{name} 
