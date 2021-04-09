@@ -136,7 +136,7 @@ const AddAndEditProd = ({prod, fn: {closeForm, reRender}}) => {
                                 onFocus={() => setInputsFocus(inputs => ({...inputs, image: true}))}
                                 onBlur={() => setInputsFocus(inputs => ({...inputs, image: false}))}
                             />
-                            <label for="image" class="custom-file-label">בחר תמונה</label>
+                            <label htmlFor="image" className="custom-file-label">בחר תמונה</label>
                         </div>
                     </div>
                     <div className="d-md-none col-12" style={styles.image}></div>
