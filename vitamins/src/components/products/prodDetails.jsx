@@ -6,12 +6,14 @@ import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import useWindowSize from '../../hooks/screenSize';
 import store from "../../redux-store/redux-store";
+import Tooltip from "../common/tooltip";
 
 const ProdDetails = ({match: {params: { id: prodId }}, editCart, cart}) => {
 
     const[amount, setAmount] = useState(1);
     const[product, setProduct] = useState({});
     const[iHover, setIHover] = useState(false);
+    const[tooltip, setTooltip] = useState(null)
 
     const { width } = useWindowSize()
 
@@ -96,14 +98,19 @@ const ProdDetails = ({match: {params: { id: prodId }}, editCart, cart}) => {
                 </span>}      
                 <i 
                     className="fas fa-cart-plus shadow add-to-cart-2"
-                    onMouseEnter={() => setIHover(true)}
-                    onMouseLeave={() => setIHover(false)}
-                    onClick={() => handleAddToCart()}
                     style={iHover ? {...styles.i,  ...styles.iOnHover} : styles.i}
+                    onMouseEnter={() => setIHover(true)}
+                    onMouseOver={(e) => setTooltip(e)}
+                    onMouseLeave={() => {
+                        setIHover(false);
+                        setTooltip(null);
+                    }}
+                    onClick={() => handleAddToCart()}
                 ></i>
             </div>
             <div className="footer-place" style={{height: '100px'}}></div>
         </>}
+        {tooltip ? <Tooltip content={'Add to cart'} event={tooltip}/>:null}
         </>
     );
 }

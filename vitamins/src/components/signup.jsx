@@ -61,7 +61,9 @@ const SignUp = ({indexesManager}) => {
 
     return(
         <div className="container py-5">
-            <form className="form sign-up-form py-5 mx-md-5 px-xl-5" onSubmit={formik.handleSubmit}>
+            <h1 className="text-center text-info pt-5">טופס הרשמה</h1>
+            <h6 className="text-center text-primary">מלא את השדות הנדרשים והצטרף למשפחת הלקוחות שלנו:)</h6>
+            <form className="form sign-up-form pb-5 pt-3 mx-md-5 px-xl-5" onSubmit={formik.handleSubmit}>
                 <label className="pr-1 mt-2 text-right d-block" htmlFor="name">שם משתמש</label>
                 <Input
                     inputData={{type: 'text', field: 'name', placeholder: 'שם משתמש', inputsFocus}}

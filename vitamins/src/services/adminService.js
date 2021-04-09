@@ -15,7 +15,7 @@ export const getSearchCount = (table, searchValue) => http.get(`${apiUrl}/${tabl
 
 export const getCount = (table) => http.get(`${apiUrl}/${table}/count`).then(data => typeof data.data === 'number'? data.data : 0);
 
-export const addItem = (table, item) => http.post(`${apiUrl}/${table}/add`, item);
+export const addItem = (table, item) => http.post(`${apiUrl}/${table}/add`, item).then(resp => resp.data);
 
 export const uploadProdImg = (img, prodId = '') => http.post(`${apiUrl}/prods/addProdImg${prodId ? '?id=' + prodId : ''}`, img);
 

@@ -66,12 +66,13 @@ const SignIn = ({indexes, indexesManager}) => {
                 </form>
                 <p className="pt-2"> עדיין לא פתחת חשבון? 
                     <Link 
-                        to="sign-up" 
+                        to="/sign-up" 
                         className="sign-up text-info" 
                         onClick={() => indexesManager(LOGIN_INDEX, false)}
                     > הירשם
                     </Link>
                 </p>
+                <p>Email: admin@gmail.com <br/> Password: 123456</p>
             </div>:
             <div className="when-login">
                 <h5>שלום <span className="user-name">{indexes.user}</span></h5>

@@ -1,13 +1,13 @@
 import ProductRow from "./productRow";
 import AddAndEditProd from "./addAndEditProd";
-import useScrollPositionBottom from "../../../hooks/scrollPosition";
+import useScrollPosition from "../../../hooks/scrollPosition";
 
 const ProductsTable = ({
     tableData: products, currentPage, addItemIndex, itemToEdit: prodToEdit, 
     fn: {reRender, handleDeleteItem, handleCloseForm, setAddItemIndex, setItemToEdit}
 }) => {
 
-    const scrollPositionBottom = useScrollPositionBottom();
+    const scrollPositionBottom = useScrollPosition().bottom;
 
     const styles = { 
         addBtn: {bottom: scrollPositionBottom > 115 ? 20 : 115 - scrollPositionBottom} 

@@ -1,4 +1,4 @@
-import useScrollPositionBottom from "../../../hooks/scrollPosition";
+import useScrollPosition from "../../../hooks/scrollPosition";
 import AddAndEditUser from "./addAndEditUser";
 import UserRow from "./userRow";
 
@@ -7,7 +7,7 @@ const UsersTable = ({
     fn: {reRender, handleDeleteItem, handleCloseForm, setAddItemIndex, setItemToEdit}
 }) => {
 
-    const scrollPositionBottom = useScrollPositionBottom();
+    const scrollPositionBottom = useScrollPosition().bottom;
     
     const styles = { 
         addBtn: {bottom: scrollPositionBottom > 115 ? 20 : 115 - scrollPositionBottom} 

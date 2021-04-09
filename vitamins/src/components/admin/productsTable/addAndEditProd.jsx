@@ -12,7 +12,7 @@ const AddAndEditProd = ({prod, fn: {closeForm, reRender}}) => {
     const styles = {
         formContainer: {width: '100%', height: '100%'},
         form: {backgroundColor: '#ddd', maxWidth: '700px', maxHeight: '550px', overflowY: 'auto'},
-        textarea: {height: '90%'},
+        textarea: {height: '90%', whitSpace: 'pre-wrap'},
         image: {
             backgroundImage: `url('${prodImg}')`,
             backgroundSize: 'contain', 

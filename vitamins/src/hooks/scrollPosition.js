@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useScrollPositionBottom = () => {
+const useScrollPosition = () => {
     const [scrollPosition, setScrollPosition] = useState(window.scrollY);
     const pageHeight   = document.body.clientHeight;
     const screenHeight = document.documentElement.clientHeight
@@ -11,7 +11,7 @@ const useScrollPositionBottom = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-  return pageHeight - (screenHeight + scrollPosition);
+  return ({top: scrollPosition, bottom: pageHeight - (screenHeight + scrollPosition)});
 }
 
-export default useScrollPositionBottom;
+export default useScrollPosition;

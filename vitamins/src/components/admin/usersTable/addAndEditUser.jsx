@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { addItem, editItem } from "../../../services/adminService";
+import { createCart } from "../../../services/cartService";
 import Input from "../../common/input";
 
 const AddAndEditUser = ({user, fn: {closeForm, reRender}}) => {
@@ -39,13 +40,14 @@ const AddAndEditUser = ({user, fn: {closeForm, reRender}}) => {
         if(values.password) values.pass = values.password;
         delete values.password;
         try {
-            if(!user) await addItem('users', values);
-            else await editItem('users', user._id, values);
+            if(!user) {
+                let {_id} = await addItem('users', values);
+                await createCart(_id);
+            } else await editItem('users', user._id, values);
             closeForm(null);
             reRender(val => !val);
             toast(`המשתמש ${user ? 'התעדכן' : 'התווסף'} בהצלחה`);
-        } catch(err) { console.dir(err)
-            toast.error('משהו השתבש נסה שנית מאוחר יותר') }
+        } catch(err) { toast.error('משהו השתבש נסה שנית מאוחר יותר') }
     }
 
     const formik = useFormik({
@@ -90,9 +92,9 @@ const AddAndEditUser = ({user, fn: {closeForm, reRender}}) => {
                         />
                     </div>
                     <div className="form-group col-sm-12 col-md-6">
-                        <label className="d-block text-right" htmlFor="role">מעמד:</label>
+                        <label className="d-block text-right" htmlFor="role">סיווג:</label>
                         <Input
-                            inputData={{type: 'text', field: 'role', placeholder: 'מעמד', inputsFocus}}
+                            inputData={{type: 'text', field: 'role', placeholder: 'סיווג', inputsFocus}}
                             inputFn={{formik, setInputsFocus}}
                         />
                     </div>

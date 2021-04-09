@@ -65,13 +65,13 @@ const AdminApp = ({table}) => {
     }
 
     const handleDeleteItem = async (itemId) => {
-        let item = currentTable === 'uaers' ? 'משתמש' : 'מוצר';
+        let item = currentTable === 'users' ? 'משתמש' : 'מוצר';
         if(!window.confirm(`האם אתה בטוח שאתה רוצה למחוק את ה${item}?`)) return;
         try {
             await deleteItem(currentTable, itemId);
-            reRender(val => !val);
+            setReRender(val => !val);
             toast(`ה${item} נמחק בהצלחה`);
-        } catch(err) { toast.error('משהו השתבש נסה שוב מאוחר יותר') };
+        } catch(err) { console.log(err); toast.error('משהו השתבש נסה שוב מאוחר יותר') };
     }
 
     const handleCloseForm = ({target: element}) => {
