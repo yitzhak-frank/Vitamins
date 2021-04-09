@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react"
-import store from "../../redux-store/redux-store";
-import { connect } from "react-redux";
-import Product from "./product"
 import { ADD_TO_CART, CHANGE_AMOUNT, editCart } from "../../redux-store/cart-reducer";
+import { useState, useEffect } from "react"
+import { connect } from "react-redux";
 import { toast } from "react-toastify";
+import Product from "./product"
+import store from "../../redux-store/redux-store";
 
 const Products = ({prods, cart, editCart}) => {
 

@@ -120,9 +120,6 @@ body header i.fa-shopping-cart:hover {
 }
 
 body header .connect {
-  position: fixed;
-  top: 20px;
-  left: 70px;
   color: gray;
 }
 
