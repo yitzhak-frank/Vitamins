@@ -17,6 +17,7 @@ import { checkIfAdmin, getCurrentUser } from './services/usersService';
 import SignUp from './components/signup';
 import ProdDetails from './components/products/prodDetails';
 import ProtectedRoute from './components/protectedRoute';
+import BackToTopBtn from './components/common/backToTop';
 
 const { getProducts, getCart, indexesManager, store, CART_INDEX, LOGIN_INDEX, USER_INDEX, ADMIN_INDEX } = reduxIndex;
 
@@ -68,6 +69,7 @@ function App() {
           <Route path="/" exact><Redirect to="/home"/></Route>
           <Redirect to="/page-not-found"/>
         </Switch>
+        <BackToTopBtn/>
         <Footer/>
       </Provider>
     </div>

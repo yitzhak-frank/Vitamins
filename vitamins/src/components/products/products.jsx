@@ -46,7 +46,9 @@ const Products = ({prods, cart, editCart}) => {
         prod.description.toLowerCase().includes(searchValue.toLowerCase()))));
 
     return (
-        <div className="container products-container mt-5">
+        <>
+        <div className="top-space" style={{height: '35px'}}></div>
+        <div className="container products-container">
             <form id="form" className="form-inline d-flex justify-content-center md-form form-sm active-pink active-pink-2 mt-2">
                 <i id="form_btn" className="fas fa-search mb-3" aria-hidden="true"></i>
                 <input 
@@ -70,6 +72,7 @@ const Products = ({prods, cart, editCart}) => {
                 :''}
             </div>
         </div>
+        </>
     )
 }
 

@@ -11,7 +11,7 @@ const useScrollPosition = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-  return ({top: scrollPosition, bottom: pageHeight - (screenHeight + scrollPosition)});
+    return ({top: scrollPosition, bottom: pageHeight - (screenHeight + scrollPosition)});
 }
 
 export default useScrollPosition;

@@ -69,7 +69,8 @@ const ProdDetails = ({match: {params: { id: prodId }}, editCart, cart}) => {
         <>
         {product._id && 
         <>
-            <h1 className="text-center text-success mt-5 pt-5">{name}</h1>
+            <div className="top-space" style={{height: '45px'}}></div>
+            <h1 className="text-center text-success pt-5">{name}</h1>
             <h5 className="mt-2 text-center text-info">{description}</h5>
             <div 
                 className="img-container mt-2 mx-auto"
