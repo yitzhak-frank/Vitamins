@@ -8,6 +8,7 @@ import { checkParentsClass } from "../../services/generalFn";
 import { useEffect, useState } from "react";
 import { CART_INDEX, indexesManager } from "../../redux-store/indexes-reduser";
 import { ADD_TO_CART, CHANGE_AMOUNT, UNSELECT_ALL, REMOVE_FROM_CART, REMOVE_SELECTED, SELECT, SELECT_ALL, selectAllHandler, selectHandler, editCart } from "../../redux-store/cart-reducer";
+import useWindowSize from "../../hooks/screenSize";
 
 const Cart = ({cart: _cart, prods, selectedItems: _selectedItems, editCart, selectHandler, selectAllHandler}) => {
 
@@ -16,6 +17,8 @@ const Cart = ({cart: _cart, prods, selectedItems: _selectedItems, editCart, sele
     const[cartProds, setCartProds] = useState([]);
     const[selectedItems, setSelectedItems] = useState(_selectedItems);
     const history = useHistory();
+
+    const { width } = useWindowSize();
 
     const styles = {
         selectedItem: { backgroundColor: 'white', border: '3px solid rgb(15, 177, 15)' },
@@ -43,13 +46,6 @@ const Cart = ({cart: _cart, prods, selectedItems: _selectedItems, editCart, sele
                 return {...prod, amount, payment};
             }
         }).reverse());
-    }
-
-    const handleAddToCart = (prod_id, price, amount = 1) => {
-        let isProdInCart = cart.items[cart.items.findIndex(item => item.prod_id === prod_id)];
-        if(isProdInCart) return handelChangeAmount(prod_id, amount)
-        let prod = { prod_id, amount, payment: price * amount};
-        updateCart(ADD_TO_CART, prod, 'התווסף');
     }
 
     const handelChangeAmount = (prodId, pointer) => {
@@ -105,7 +101,7 @@ const Cart = ({cart: _cart, prods, selectedItems: _selectedItems, editCart, sele
     const closeCart = () => store.dispatch(indexesManager(CART_INDEX, false));
 
     return (
-        <div className="cart">
+        <div className="cart" style={{left: width <= 360 ? `${(width - 320)/2}px` : '20px'}}>
             {cartProds.length? <>
                 <div className="cart-head cart-full p-2">
                     <div className="checkbox">
