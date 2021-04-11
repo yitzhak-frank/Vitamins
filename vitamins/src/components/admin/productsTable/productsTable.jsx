@@ -1,18 +1,12 @@
 import ProductRow from "./productRow";
 import AddAndEditProd from "./addAndEditProd";
-import useScrollPosition from "../../../hooks/scrollPosition";
+import AddItemBtn from "../addItemBtn";
 
 const ProductsTable = ({
     tableData: products, currentPage, addItemIndex, itemToEdit: prodToEdit, 
     fn: {reRender, handleDeleteItem, handleCloseForm, setAddItemIndex, setItemToEdit}
 }) => {
 
-    const scrollPositionBottom = useScrollPosition().bottom;
-
-    const styles = { 
-        addBtn: {bottom: scrollPositionBottom > 115 ? 20 : 115 - scrollPositionBottom} 
-    };
-    
     return (
         <>
             <table className="table table-striped">
@@ -38,20 +32,14 @@ const ProductsTable = ({
                     />)}
                 </tbody>
             </table>
-            <i id="add-btn" className="fas fa-plus shadow bg-secondary" 
-                style={styles.addBtn}
-                onClick={() => setAddItemIndex(!addItemIndex)}
-            />
+            
+            <AddItemBtn setIndex={setAddItemIndex} item={'מוצר'}/>
 
-            {addItemIndex ? 
+            {addItemIndex || prodToEdit ? 
                 <div className="dark-form-cover" onClick={handleCloseForm}>
-                    <AddAndEditProd fn={{closeForm: setAddItemIndex, reRender}}/>
+                    <AddAndEditProd prod={prodToEdit} fn={{closeForm: (prodToEdit ? setItemToEdit : setAddItemIndex), reRender}}/>
                 </div>
-            :prodToEdit ? 
-                <div className="dark-form-cover" onClick={handleCloseForm}>
-                    <AddAndEditProd prod={prodToEdit} fn={{closeForm: setItemToEdit, reRender}}/>
-                </div>:''
-            }
+            :''}
         </>
     )
 }

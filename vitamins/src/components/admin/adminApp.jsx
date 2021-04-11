@@ -2,10 +2,11 @@ import Pagination from "./pagination";
 import UsersTable from "./usersTable/usersTable";
 import AdminNavBar from "./adminNavBar";
 import ProductsTable from "./productsTable/productsTable";
-import { useState, useEffect } from "react";
-import { deleteItem, getCount, getSearchCount, getTableData, searchItems } from "../../services/adminService";
+import InquiriesTable from "./inquiriesTable/inquiriesTable";
 import { toast } from "react-toastify";
 import { checkParentsClass } from "../../services/generalFn";
+import { useState, useEffect } from "react";
+import { deleteItem, getCount, getSearchCount, getTableData, searchItems } from "../../services/adminService";
 
 const AdminApp = ({table}) => {
 
@@ -13,7 +14,7 @@ const AdminApp = ({table}) => {
     const[tableData, setTableData] = useState({});
     const[currentPage, setCurrentPage] = useState(0);
     const[sortBy, setSortBy] = useState('_id');
-    const[orderBy, setOrderBy] = useState(1);
+    const[orderBy, setOrderBy] = useState(-1);
     const[itemsCount, setItemsCount] = useState(0);
     const[pagesCount, setPagesCount] = useState([]);
     const[amontToShow ,setAmontToShow] = useState(10);
@@ -65,12 +66,12 @@ const AdminApp = ({table}) => {
     }
 
     const handleDeleteItem = async (itemId) => {
-        let item = currentTable === 'users' ? 'משתמש' : 'מוצר';
+        let item = currentTable === 'users' ? 'משתמש' : 'prods' ? 'פנייה' : 'מוצר' ;
         if(!window.confirm(`האם אתה בטוח שאתה רוצה למחוק את ה${item}?`)) return;
         try {
             await deleteItem(currentTable, itemId);
             setReRender(val => !val);
-            toast(`ה${item} נמחק בהצלחה`);
+            toast(`ה${item} ${currentTable === 'inquiries' ? 'נמחקה' : 'נמחק'} בהצלחה`);
         } catch(err) { console.log(err); toast.error('משהו השתבש נסה שוב מאוחר יותר') };
     }
 
@@ -113,7 +114,13 @@ const AdminApp = ({table}) => {
                     itemToEdit={itemToEdit}
                     addItemIndex={addItemIndex}
                     fn={{reRender: setReRender, handleDeleteItem, handleCloseForm, setAddItemIndex, setItemToEdit}}
-                />: ''}
+                />:
+                currentTable === 'inquiries' && tableData[currentTable] ? <InquiriesTable
+                    tableData={tableData[currentTable]} 
+                    currentPage={currentPage}
+                    fn={{handleDeleteItem}}
+                />
+                : ''}
             </div>
 
             {pagesCount.length > 1 && <Pagination 

@@ -29,7 +29,7 @@ router.get('/checkLogin', authToken, (req, res) => res.json({message: 'login'}))
 router.get('/checkAdmin', authToken, authAdmin, (req, res) => res.status(200).json({message: 'admin'}));
 
 router.get('/stayLogin', authToken, (req, res) => {
-    let myToken = createToken(req.middle.email, req.middle.user_id);
+    let myToken = createToken(req.middle.email, req.middle.user_id, req.middle.role);
     res.json({token: myToken});
 });
 
@@ -115,7 +115,7 @@ router.post('/login', async(req, res) => {
         let passwrod = await bcrypt.compare(req.body.pass, user.pass);
         if(!passwrod) return res.status(400).json({message: 'invalid user or password'});
 
-        let myToken = createToken(user.email, user._id);
+        let myToken = createToken(user.email, user._id, user.role);
         res.json({token: myToken, name: user.name, role: user.role});
     } catch(err) {
         res.status(400).json(err);

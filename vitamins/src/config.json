@@ -1,3 +1,3 @@
 {
-    "apiUrl": "https://vitamins-site.herokuapp.com"
+    "apiUrl": "http://localhost:3001"
 }

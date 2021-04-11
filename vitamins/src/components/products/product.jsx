@@ -26,11 +26,11 @@ const Product = ({prod: {name, description, price, _id}, fn: {handleAddToCart}})
                 <i 
                     className="fas fa-cart-plus add-to-cart" 
                     onClick={() => handleAddToCart(_id, price)}
-                    onMouseOver={setTooltip}
+                    onMouseMove={setTooltip}
                     onMouseLeave={() => setTooltip(null)}
                 ></i>
             </div>
-            {tooltip ? <Tooltip content={'Add to cart'} event={tooltip}/>:null}
+            {tooltip ? <Tooltip content={'הוסף לעגלת הקניות'} event={tooltip}/>:null}
         </div>
     );
 }

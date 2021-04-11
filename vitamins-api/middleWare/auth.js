@@ -4,13 +4,14 @@ const bcrypt = require('bcrypt');
 const {secret} = require('../config/secret');
 const { usersModel } = require('../models/usersModel');
 const { prodsModel } = require('../models/prodsModel');
+const { url } = require('../config/general');
 
 exports.authToken = (req, res, next) => {
     let token = req.header('x-auth-token');
     if(!token) return res.status(401).json({massage: "you must send token!"});
     try {
         let decodeToken = jwt.verify(token, secret.tokenWord);
-        req.middle = {email: decodeToken.email, user_id: decodeToken._id};
+        req.middle = {email: decodeToken.email, user_id: decodeToken.id, role: decodeToken.role};
         next();
     } catch(err) {
         res.status(401).json({massage: 'you token is invalid or expire!', err});
@@ -27,7 +28,7 @@ exports.authAdmin = (req, res, next) => {
 exports.removeImage = async(_prodId) => {
     try {
         let imgUrl  = await prodsModel.findOne({_id: _prodId}, {image: 1});
-        let imgPath = imgUrl.image.replace('http://localhost:3001', './public');
+        let imgPath = imgUrl.image.replace(url, './public');
         fs.unlink(imgPath, (err) => { if(err) return console.log(err) });
     } catch(err){
         console.log(err);

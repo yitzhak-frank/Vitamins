@@ -12,3 +12,5 @@ export const getDateFormated = (date) => {
     if(day.toString().length < 2)   day   = '0' + day;
     return `${day}-${month}-${date.getFullYear()}`;
 }
+
+export const htmlEntities = (str) =>  String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');

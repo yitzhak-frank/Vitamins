@@ -15,7 +15,7 @@ const prodsSchema = new mongoose.Schema({
 
 exports.prodsModel = mongoose.model('products', prodsSchema);
 
-exports.validProd = (_record) => {
+exports.validProd = (prod) => {
     let scehma = joi.object({
         _id:         joi.any(),
         name:        joi.string().min(2).max(100).required(),
@@ -24,5 +24,5 @@ exports.validProd = (_record) => {
         image:       joi.string().min(2).max(200).required(),
         price:       joi.number().required()
     });
-    return scehma.validate(_record);
+    return scehma.validate(prod);
 }

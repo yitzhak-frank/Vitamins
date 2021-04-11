@@ -458,6 +458,7 @@ a {
 .admin-nav-container select {
   background-color: rgba(0, 0, 0, 0);
   outline: 0;
+  border: none;
   color: #ccc;
 }
 
@@ -783,3 +784,23 @@ a.backToTop i:hover {
   background-color: #585858;
   opacity: 1;
 }
+
+form.inquiry select {
+  background-color: rgba(0, 0, 0, 0);
+  outline: 0;
+  border: none;
+  color: #666;
+}
+
+form.inquiry select:hover {
+  cursor: pointer;
+  color: #333;
+}
+
+/* 
+.home {
+  background-image: url('./images/adam-niescioruk-hWzrJsS8gwI-unsplash.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+} */

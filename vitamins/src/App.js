@@ -18,6 +18,8 @@ import SignUp from './components/signup';
 import ProdDetails from './components/products/prodDetails';
 import ProtectedRoute from './components/protectedRoute';
 import BackToTopBtn from './components/common/backToTop';
+import Contact from './components/contact';
+import Inquiry from './components/admin/inquiriesTable/inquiry';
 
 const { getProducts, getCart, indexesManager, store, CART_INDEX, LOGIN_INDEX, USER_INDEX, ADMIN_INDEX } = reduxIndex;
 
@@ -62,9 +64,12 @@ function App() {
           <Route path="/products" exact component={Products}/>
           <Route path="/product-details/:id" component={ProdDetails}/>
           <Route path="/sign-up" exact component={SignUp}/>
+          <Route path="/contact" exact component={Contact}/>
           <Route path="/page-not-found" render={() => pageNotFound}/>
           <ProtectedRoute path="/admin/prods" exact component={AdminApp} table={'prods'}></ProtectedRoute>
           <ProtectedRoute path="/admin/users" exact component={AdminApp} table={'users'}></ProtectedRoute>
+          <ProtectedRoute path="/admin/inquiries" exact component={AdminApp} table={'inquiries'}></ProtectedRoute>
+          <ProtectedRoute path="/admin/inquiries/inquiry/:id" component={Inquiry}></ProtectedRoute>
           <Route path="/admin" exact><Redirect to="/admin/prods"/></Route>
           <Route path="/" exact><Redirect to="/home"/></Route>
           <Redirect to="/page-not-found"/>

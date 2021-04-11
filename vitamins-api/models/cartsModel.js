@@ -26,7 +26,7 @@ const cartsSchema = new mongoose.Schema({
 
 exports.cartsModel = mongoose.model('carts', cartsSchema);
 
-exports.validCart = (_cart) => {
+exports.validCart = (cart) => {
     let schema = joi.object({
         user_id: joi.string().required(),
         items:   joi.array().items({
@@ -35,14 +35,14 @@ exports.validCart = (_cart) => {
             payment: joi.number().required()
         })
     });
-    return schema.validate(_cart);
+    return schema.validate(cart);
 }
 
-exports.validCartItem = (_item) => {
+exports.validCartItem = (item) => {
     let schema = joi.object({
         prod_id: joi.string().required(),
         amount:  joi.number().required(),
         payment: joi.number().required()
     });
-    return schema.validate(_item);
+    return schema.validate(item);
 }

@@ -1,4 +1,4 @@
-import useScrollPosition from "../../../hooks/scrollPosition";
+import AddItemBtn from "../addItemBtn";
 import AddAndEditUser from "./addAndEditUser";
 import UserRow from "./userRow";
 
@@ -7,12 +7,6 @@ const UsersTable = ({
     fn: {reRender, handleDeleteItem, handleCloseForm, setAddItemIndex, setItemToEdit}
 }) => {
 
-    const scrollPositionBottom = useScrollPosition().bottom;
-    
-    const styles = { 
-        addBtn: {bottom: scrollPositionBottom > 115 ? 20 : 115 - scrollPositionBottom} 
-    };
-    
     return(
         <>
             <table className="table table-striped">
@@ -37,18 +31,11 @@ const UsersTable = ({
                     />)}
                 </tbody>
             </table>
-            <i id="add-btn" className="fas fa-plus shadow bg-secondary" 
-                style={styles.addBtn}
-                onClick={() => setAddItemIndex(!addItemIndex)}
-            />
+            <AddItemBtn setIndex={setAddItemIndex} item={'משתמש'} />
             {
-            addItemIndex ? 
+            addItemIndex || userToEdit ? 
                 <div className="dark-form-cover"  onClick={handleCloseForm}>
-                    <AddAndEditUser fn={{closeForm: setAddItemIndex, reRender}}/>
-                </div>:
-            userToEdit ? 
-                <div className="dark-form-cover"  onClick={handleCloseForm}>
-                    <AddAndEditUser user={userToEdit} fn={{closeForm: setItemToEdit, reRender}}/>
+                    <AddAndEditUser user={userToEdit} fn={{closeForm: (userToEdit ? setItemToEdit : setAddItemIndex), reRender}}/>
                 </div>
             :''}
         </>

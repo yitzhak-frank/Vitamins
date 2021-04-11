@@ -42,7 +42,7 @@ const AddAndEditUser = ({user, fn: {closeForm, reRender}}) => {
         try {
             if(!user) {
                 let {_id} = await addItem('users', values);
-                await createCart(_id);
+                await createCart(_id).then(console.log);
             } else await editItem('users', user._id, values);
             closeForm(null);
             reRender(val => !val);
@@ -87,7 +87,7 @@ const AddAndEditUser = ({user, fn: {closeForm, reRender}}) => {
                     <div className="form-group col-sm-12 col-md-6">
                         <label className="d-block text-right" htmlFor="password">סיסמא:</label>
                         <Input
-                            inputData={{type: 'password', field: 'password', placeholder: 'סיסמא', inputsFocus}}
+                            inputData={{type: 'text', field: 'password', placeholder: 'סיסמא', inputsFocus}}
                             inputFn={{formik, setInputsFocus}}
                         />
                     </div>

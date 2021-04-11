@@ -1,11 +1,11 @@
 import { Redirect, Route } from 'react-router-dom';
-import {checkAdminToken, checkIfAdmin} from '../services/usersService';
+import { checkIfAdmin, getCurrentUser } from '../services/usersService';
 
-const ProtectedRoute = ({component: Componenet, table}) => {
-    checkAdminToken();
-    return <Route render={(props) => {
-        if(!checkIfAdmin()) return <Redirect to={{pathname: "/", state: {from: props.location}}}/>
-        else return <Componenet {...props} table={table}/>
+const ProtectedRoute = (props) => {
+    const {component: Componenet, table, computedMatch: {params}} = props;
+    return <Route render={() => {
+        if(!getCurrentUser() || !checkIfAdmin()) return <Redirect to={{pathname: "/", state: {from: props.location}}}/>
+        else return <Componenet {...props} table={table} params={params}/>
     }}/>
 }
 

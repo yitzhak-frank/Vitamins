@@ -62,10 +62,11 @@ const NavBar = ({indexes, cartItems, indexesManager}) => {
                 "navbar-nav d-none d-md-flex px-3"
             }> 
                 <NavLink to="/home" className="nav-link mx-2" onClick={() => setHamburger(false)}>בית</NavLink>
-                <div className="nav-link mx-2">אודותינו</div>
+                <NavLink to="/about" className="nav-link mx-2" onClick={() => setHamburger(false)}>אודותינו</NavLink>
                 <NavLink to="/products" className="nav-link mx-2" onClick={() => setHamburger(false)}>מוצרים</NavLink>
-                <div className="nav-link mx-2">צור קשר</div>
-                {indexes.admin && <NavLink 
+                <NavLink to="/contact" className="nav-link mx-2" onClick={() => setHamburger(false)}>צור קשר</NavLink>
+                {indexes.admin && 
+                <NavLink 
                     to="/admin" 
                     className="nav-link mx-2"
                     style={{'color': url.includes('admin') && 'white'}}
@@ -74,8 +75,10 @@ const NavBar = ({indexes, cartItems, indexesManager}) => {
             </div>
 
             <div className="icons d-flex" style={styles.icons}>
-                <span className={indexes.login? "active navbar-nav connect ml-3": "navbar-nav connect ml-3" } 
-                    onClick={togglLogin}>
+                <span 
+                    className={indexes.login? "active navbar-nav connect ml-3": "navbar-nav connect ml-3" } 
+                    onClick={togglLogin}
+                >
                     <div className="nav-link" id="login-text">
                         {indexes.user || 'התחבר'}
                     </div>

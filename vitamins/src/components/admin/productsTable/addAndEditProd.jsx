@@ -1,7 +1,8 @@
+import { addItem, editItem, uploadProdImg } from "../../../services/adminService";
+import { htmlEntities } from "../../../services/generalFn";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { addItem, editItem, uploadProdImg } from "../../../services/adminService";
 import Input from "../../common/input";
 
 const AddAndEditProd = ({prod, fn: {closeForm, reRender}}) => {
@@ -12,7 +13,7 @@ const AddAndEditProd = ({prod, fn: {closeForm, reRender}}) => {
     const styles = {
         formContainer: {width: '100%', height: '100%'},
         form: {backgroundColor: '#ddd', maxWidth: '700px', maxHeight: '550px', overflowY: 'auto'},
-        textarea: {height: '90%', whitSpace: 'pre-wrap'},
+        textarea: {height: '90%', whiteSpace: 'pre-wrap'},
         image: {
             backgroundImage: `url('${prodImg}')`,
             backgroundSize: 'contain', 
@@ -146,7 +147,7 @@ const AddAndEditProd = ({prod, fn: {closeForm, reRender}}) => {
                         <textarea 
                             type="text" className="form-control" name="more_info" id="more_info" placeholder="מידע נוסף"
                             style={styles.textarea}
-                            value={formik.values.more_info}
+                            value={htmlEntities(formik.values.more_info)}
                             onChange={formik.handleChange}
                             onFocus={() => setInputsFocus(inputs => ({...inputs, more_info: true}))}
                             onBlur={(e) => {
@@ -154,6 +155,9 @@ const AddAndEditProd = ({prod, fn: {closeForm, reRender}}) => {
                                 setInputsFocus(inputs => ({...inputs, more_info: false}));
                             }}
                         ></textarea>
+                        {formik.touched.more_info && formik.errors.more_info? 
+                            <small className="text-danger text-right d-block">{formik.errors.more_info}</small>
+                        :null}
                     </div>
                     <div className="d-none d-md-block col-6" style={styles.image}></div>
                 </div>

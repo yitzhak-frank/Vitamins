@@ -45,7 +45,7 @@ const SignUp = ({indexesManager}) => {
             
             indexesManager(SIGNUP_DATA, user);
             indexesManager(LOGIN_INDEX, true);
-        } catch(err) { console.dir(err) }
+        } catch(err) { toast.error('משהו השתבש נסה שוב מאוחר יותר') }
     }
 
     const formik = useFormik({

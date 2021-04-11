@@ -40,14 +40,14 @@ router.put('/edit', authToken, (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-router.put('/addItem', authToken, async(req, res) => {
+router.patch('/addItem', authToken, async(req, res) => {
     let { error } = validCartItem(req.body);
     if(error) return res.status(400).json(error.details);
     try {
         let result;
         let prod = await cartsModel.findOne({user_id: req.middle.user_id ,items: {$elemMatch: {prod_id: req.body.prod_id}}});
         if(prod) return res.redirect(307, '/carts/changeItem');    
-        else result = await cartsModel.updateOne({$push: {items: req.body}});
+        else result = await cartsModel.updateOne({user_id: req.middle.user_id}, {$push: {items: req.body}});
         res.json(result);
     } catch(err) {
         console.log(err);
@@ -55,21 +55,21 @@ router.put('/addItem', authToken, async(req, res) => {
     }
 });
 
-router.put('/changeItem', authToken, (req, res) => {
+router.patch('/changeItem', authToken, (req, res) => {
     let { error } = validCartItem(req.body);
     if(error) return res.status(400).json(error.details);
     cartsModel.updateOne(
         {user_id: req.middle.user_id, items: {$elemMatch: {prod_id: req.body.prod_id}}},
-        {$set: {'items.$.amount': req.body.amount, 'items.$.payment': req.body.payment, 'items.$.date_updated': Date.now()}})
-    .then(data => res.json(data))
+        {$set: {'items.$.amount': req.body.amount, 'items.$.payment': req.body.payment, 'items.$.date_updated': Date.now()}}
+    ).then(data => res.json(data))
     .catch(err => res.status(400).json(err));
 });
 
-router.put('/removeItem', authToken, (req, res) => {
+router.patch('/removeItem', authToken, (req, res) => {
     cartsModel.updateOne(
         {user_id: req.middle.user_id, items: {$elemMatch: {prod_id: req.body.prod_id}}},
-        {$pull: {items: {prod_id: req.body.prod_id}}})
-    .then(data => res.json(data))
+        {$pull: {items: {prod_id: req.body.prod_id}}}
+    ).then(data => res.json(data))
     .catch(err => res.status(400).json(err));
 });
 

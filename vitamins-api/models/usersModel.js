@@ -19,17 +19,17 @@ const usersSchema = new mongoose.Schema({
 
 exports.usersModel = mongoose.model('users', usersSchema);
 
-exports.validUser = (_record) => {
+exports.validUser = (user) => {
     let scehma = joi.object({
         _id:   joi.any(),
         name:  joi.string().min(2).max(100).required(),
         email: joi.string().min(2).max(100).email().required(),
         pass:  joi.string().min(2).max(100).required()
     });
-    return scehma.validate(_record);
+    return scehma.validate(user);
 }
 
-exports.validAddUserByAdmin = (_record) => {
+exports.validAddUserByAdmin = (user) => {
     let scehma = joi.object({
         _id:   joi.any(),
         name:  joi.string().min(2).max(100).required(),
@@ -37,10 +37,10 @@ exports.validAddUserByAdmin = (_record) => {
         pass:  joi.string().min(2).max(100).required(),
         role:  joi.string().min(2).max(100).required()
     });
-    return scehma.validate(_record);
+    return scehma.validate(user);
 }
 
-exports.validEditUserByAdmin = (_record) => {
+exports.validEditUserByAdmin = (user) => {
     let scehma = joi.object({
         _id:   joi.any(),
         name:  joi.string().min(2).max(100).required(),
@@ -48,15 +48,15 @@ exports.validEditUserByAdmin = (_record) => {
         pass:  joi.string().min(2).max(100),
         role:  joi.string().min(2).max(100).required()
     });
-    return scehma.validate(_record);
+    return scehma.validate(user);
 }
 
-exports.validLogin = (_record) => {
+exports.validLogin = (info) => {
     let scehma = joi.object({
         email: joi.string().min(2).max(100).email().required(),
         pass:  joi.string().min(2).max(100).required(),
     });
-    return scehma.validate(_record);
+    return scehma.validate(info);
 }
 
-exports.createToken = (email, _id) => jwt.sign({email , _id}, secret.tokenWord);//, {expiresIn: '60mins'}
+exports.createToken = (email, id, role) => jwt.sign({email , id, role}, secret.tokenWord);//, {expiresIn: '60mins'}

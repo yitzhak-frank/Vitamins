@@ -11,9 +11,12 @@ export const searchItems = (table, sortBy, orderBy, skip, limit, searchValue) =>
     .then(resp => resp.data);
 }
 
-export const getSearchCount = (table, searchValue) => http.get(`${apiUrl}/${table}/searchCount?q=${searchValue}`).then(resp => resp.data);
+export const getSearchCount = (table, searchValue) => http.get(`${apiUrl}/${table}/searchCount?q=${searchValue}`)
+    .then(resp => typeof resp.data === 'number'? resp.data : 0);
 
-export const getCount = (table) => http.get(`${apiUrl}/${table}/count`).then(data => typeof data.data === 'number'? data.data : 0);
+export const getCount = (table) => http.get(`${apiUrl}/${table}/count`).then(resp => typeof resp.data === 'number'? resp.data : 0);
+
+export const getItemById = (table, itemId) => http.get(`${apiUrl}/${table}/single/${itemId}`).then(resp => resp.data);
 
 export const addItem = (table, item) => http.post(`${apiUrl}/${table}/add`, item).then(resp => resp.data);
 

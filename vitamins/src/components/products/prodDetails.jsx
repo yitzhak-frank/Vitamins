@@ -19,7 +19,7 @@ const ProdDetails = ({match: {params: { id: prodId }}, editCart, cart}) => {
 
     const styles = {
         image:   {background: `url(${product.image})no-repeat center`, width: '100%', height: '50vh', maxWidth: '800px'},
-        more_info: {direction: 'ltr', maxWidth: '800px', columnCount: width > 700 ? 2 : 1},
+        more_info: {direction: 'ltr', maxWidth: '800px', columnCount: width > 700 ? 2 : 1, whiteSpace: 'pre-wrap'},
         bottom:  {height: '75px', backgroundColor: '#ddd'},
         amount:  {height: '25px', width: '25px', border: '1px solid gray', fontSize: '14px', outline: 'none',backgroundColor: '#f0f0f0'},
         buttons: {backgroundColor: '#c8c8c8', fontWeight: 'bold', cursor: 'pointer'},
@@ -63,7 +63,7 @@ const ProdDetails = ({match: {params: { id: prodId }}, editCart, cart}) => {
         else toast.error('משהו השתבש נסה שוב מאוחר יותר');
     }
 
-    let { name, description, more_info, price } = product;
+    const { name, description, more_info, price } = product;
 
     return (
         <>
@@ -101,7 +101,7 @@ const ProdDetails = ({match: {params: { id: prodId }}, editCart, cart}) => {
                     className="fas fa-cart-plus shadow add-to-cart-2"
                     style={iHover ? {...styles.i,  ...styles.iOnHover} : styles.i}
                     onMouseEnter={() => setIHover(true)}
-                    onMouseOver={(e) => setTooltip(e)}
+                    onMouseMove={setTooltip}
                     onMouseLeave={() => {
                         setIHover(false);
                         setTooltip(null);
@@ -111,7 +111,7 @@ const ProdDetails = ({match: {params: { id: prodId }}, editCart, cart}) => {
             </div>
             <div className="footer-place" style={{height: '100px'}}></div>
         </>}
-        {tooltip ? <Tooltip content={'Add to cart'} event={tooltip}/>:null}
+        {tooltip ? <Tooltip content={'הוסף לעגלת הקניות'} event={tooltip}/>:null}
         </>
     );
 }

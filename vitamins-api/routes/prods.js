@@ -1,4 +1,5 @@
 const express = require('express');
+const { url } = require('../config/general');
 const { authToken, authAdmin, removeImage } = require('../middleWare/auth');
 const { prodsModel, validProd } = require('../models/prodsModel');
 const router = express.Router();
@@ -62,7 +63,7 @@ router.post('/addProdImg', authToken, authAdmin, (req, res) => {
     });
     // delete the old image
     if(req.query.id) removeImage(req.query.id);
-    res.json({massage: 'file upload successfuly', imgUrl: `http://localhost:3001/prods_images/${img.name}`});
+    res.json({massage: 'file upload successfuly', imgUrl: `${url}/prods_images/${img.name}`});
 });
 
 router.post('/add', authToken, authAdmin, async(req, res) => {
