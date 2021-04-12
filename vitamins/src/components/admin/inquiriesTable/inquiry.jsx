@@ -5,6 +5,7 @@ import { getDateFormated, htmlEntities } from "../../../services/generalFn";
 import useWindowSize from "../../../hooks/screenSize";
 import UpdateInquiryStatus from "./updateInquiryStatus";
 import { updateStatus } from "../../../services/inquiriesService";
+import BackBtn from "../../common/backBtn";
 
 const Inquiry = ({params: { id: inquiryId }}) => {
 
@@ -32,6 +33,7 @@ const Inquiry = ({params: { id: inquiryId }}) => {
         <>
         {inquiry && 
         <>
+        <BackBtn/>
         <div className="top-space" style={{height: '50px'}}></div>
         <div className="container pt-5 mx-auto" style={styles.container}>
             <h1 className="text-center text-info"> פניית לקוח.</h1>

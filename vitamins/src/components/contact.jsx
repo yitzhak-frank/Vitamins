@@ -40,8 +40,10 @@ const Contact = () => {
     }
 
     const onSubmit = async values => {
+        values.user_id = isLogin.id;
+        values.name    = htmlEntities(values.name);
+        values.msg     = htmlEntities(values.msg);
         try {
-            values.user_id = isLogin.id;
             await addInquiry(values);
             toast(`${values.name} פנייתך התקבלה במערכת ותענה בהקדם:)`);
             history.replace('home');

@@ -7,12 +7,13 @@ import { toast } from "react-toastify";
 import useWindowSize from '../../hooks/screenSize';
 import store from "../../redux-store/redux-store";
 import Tooltip from "../common/tooltip";
+import BackBtn from "../common/backBtn";
 
 const ProdDetails = ({match: {params: { id: prodId }}, editCart, cart}) => {
 
     const[amount, setAmount] = useState(1);
     const[product, setProduct] = useState({});
-    const[iHover, setIHover] = useState(false);
+    const[iOver, setIOver] = useState(false);
     const[tooltip, setTooltip] = useState(null)
 
     const { width } = useWindowSize()
@@ -69,47 +70,48 @@ const ProdDetails = ({match: {params: { id: prodId }}, editCart, cart}) => {
         <>
         {product._id && 
         <>
-            <div className="top-space" style={{height: '45px'}}></div>
-            <h1 className="text-center text-success pt-5">{name}</h1>
-            <h5 className="mt-2 text-center text-info">{description}</h5>
-            <div 
-                className="img-container mt-2 mx-auto"
-                style={styles.image}
-            ></div>
-            <div className="p-3 pt-5 p-lg-5 mx-auto" style={styles.more_info}>
-                <p className="text-justify text-dark">{more_info}</p>
+        <BackBtn/>
+        <div className="top-space" style={{height: '45px'}}></div>
+        <h1 className="text-center text-success pt-5">{name}</h1>
+        <h5 className="mt-2 text-center text-info">{description}</h5>
+        <div 
+            className="img-container mt-2 mx-auto"
+            style={styles.image}
+        ></div>
+        <div className="p-3 pt-5 p-lg-5 mx-auto" style={styles.more_info}>
+            <p className="text-justify text-dark">{more_info}</p>
+        </div>
+        <div className="bottom d-flex align-items-center justify-content-around" style={styles.bottom}>
+            <div className="amount d-flex">
+                <div 
+                    className="increace plus d-flex justify-content-center" 
+                    style={{...styles.amount, ...styles.buttons, ...styles.plus}} 
+                    onClick={() => changeAmount(1)}
+                >+</div>
+                <div className="text-center current-amount d-flex justify-content-center" style={styles.amount}>{amount}</div>
+                <div 
+                    className="reduce minus d-flex justify-content-center" 
+                    style={{...styles.amount, ...styles.buttons, ...styles.minus}} 
+                    onClick={() => changeAmount(-1)}
+                >-</div>
             </div>
-            <div className="bottom d-flex align-items-center justify-content-around" style={styles.bottom}>
-                <div className="amount d-flex">
-                    <div 
-                        className="increace plus d-flex justify-content-center" 
-                        style={{...styles.amount, ...styles.buttons, ...styles.plus}} 
-                        onClick={() => changeAmount(1)}
-                    >+</div>
-                    <div className="text-center current-amount d-flex justify-content-center" style={styles.amount}>{amount}</div>
-                    <div 
-                        className="reduce minus d-flex justify-content-center" 
-                        style={{...styles.amount, ...styles.buttons, ...styles.minus}} 
-                        onClick={() => changeAmount(-1)}
-                    >-</div>
-                </div>
-                <h5 className="mt-2 text-center text-success original-price">{price} ₪</h5>
-                {amount > 1 && <span className="text-info prod-final-price">
-                    סך הכל {(price * amount).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")} ₪
-                </span>}      
-                <i 
-                    className="fas fa-cart-plus shadow add-to-cart-2"
-                    style={iHover ? {...styles.i,  ...styles.iOnHover} : styles.i}
-                    onMouseEnter={() => setIHover(true)}
-                    onMouseMove={setTooltip}
-                    onMouseLeave={() => {
-                        setIHover(false);
-                        setTooltip(null);
-                    }}
-                    onClick={() => handleAddToCart()}
-                ></i>
-            </div>
-            <div className="footer-place" style={{height: '100px'}}></div>
+            <h5 className="mt-2 text-center text-success original-price">{price} ₪</h5>
+            {amount > 1 && <span className="text-info prod-final-price">
+                סך הכל {(price * amount).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")} ₪
+            </span>}      
+            <i 
+                className="fas fa-cart-plus shadow add-to-cart-2"
+                style={iOver ? {...styles.i,  ...styles.iOnHover} : styles.i}
+                onMouseEnter={() => setIOver(true)}
+                onMouseMove={setTooltip}
+                onMouseLeave={() => {
+                    setIOver(false);
+                    setTooltip(null);
+                }}
+                onClick={() => handleAddToCart()}
+            ></i>
+        </div>
+        <div className="footer-place" style={{height: '100px'}}></div>
         </>}
         {tooltip ? <Tooltip content={'הוסף לעגלת הקניות'} event={tooltip}/>:null}
         </>

@@ -6,13 +6,16 @@ export const getTableData = (table, sortBy, orderBy, skip, limit) => {
     .then(resp => resp.data)
 }
 
-export const searchItems = (table, sortBy, orderBy, skip, limit, searchValue) => {
-    return http.get(`${apiUrl}/${table}/search?sort=${sortBy}&order=${orderBy}&skip=${skip}&limit=${limit}&q=${searchValue}`)
-    .then(resp => resp.data);
+export const searchItems = (table, sortBy, orderBy, skip, limit, searchValue, searchFields) => {
+    return http.get(
+        `${apiUrl}/${table}/search?sort=${sortBy}&order=${orderBy}&skip=${skip}&limit=${limit}&q=${searchValue}&fields=${searchFields}`
+    ).then(resp => resp.data);
 }
 
-export const getSearchCount = (table, searchValue) => http.get(`${apiUrl}/${table}/searchCount?q=${searchValue}`)
+export const getSearchCount = (table, searchValue, searchFields) => {
+    return http.get(`${apiUrl}/${table}/searchCount?q=${searchValue}&fields=${searchFields}`)
     .then(resp => typeof resp.data === 'number'? resp.data : 0);
+}
 
 export const getCount = (table) => http.get(`${apiUrl}/${table}/count`).then(resp => typeof resp.data === 'number'? resp.data : 0);
 

@@ -1,7 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
 import { checkIfAdmin, getCurrentUser } from '../services/usersService';
 
-const ProtectedRoute = (props) => {
+const AdminRoute = (props) => {
     const {component: Componenet, table, computedMatch: {params}} = props;
     return <Route render={() => {
         if(!getCurrentUser() || !checkIfAdmin()) return <Redirect to={{pathname: "/", state: {from: props.location}}}/>
@@ -9,4 +9,4 @@ const ProtectedRoute = (props) => {
     }}/>
 }
 
-export default ProtectedRoute;
+export default AdminRoute;

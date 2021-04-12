@@ -2,28 +2,29 @@ import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import Home from './components/Home';
 import Cart from './components/cart/cart';
+import About from './components/about';
 import Footer from './components/footer';
 import NavBar from './components/navBar';
 import SignIn from './components/signin';
+import SignUp from './components/signup';
+import Contact from './components/contact';
+import Inquiry from './components/admin/inquiriesTable/inquiry';
 import AdminApp from './components/admin/adminApp';
 import Products from './components/products/products';
 import reduxIndex from './redux-store/index.redux';
+import AdminRoute from './components/adminRoute';
+import ProdDetails from './components/products/prodDetails';
+import BackToTopBtn from './components/common/backToTop';
 import { Provider } from "react-redux";
 import { ToastContainer } from 'react-toastify';
 import { checkParentsClass } from './services/generalFn';
 import { useState, useEffect } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { checkIfAdmin, getCurrentUser } from './services/usersService';
-import SignUp from './components/signup';
-import ProdDetails from './components/products/prodDetails';
-import ProtectedRoute from './components/protectedRoute';
-import BackToTopBtn from './components/common/backToTop';
-import Contact from './components/contact';
-import Inquiry from './components/admin/inquiriesTable/inquiry';
 
 const { getProducts, getCart, indexesManager, store, CART_INDEX, LOGIN_INDEX, USER_INDEX, ADMIN_INDEX } = reduxIndex;
 
-function App() {
+const App = () => {
 
   const [indexes, setIndexes] = useState({});
   
@@ -65,13 +66,14 @@ function App() {
           <Route path="/product-details/:id" component={ProdDetails}/>
           <Route path="/sign-up" exact component={SignUp}/>
           <Route path="/contact" exact component={Contact}/>
-          <Route path="/page-not-found" render={() => pageNotFound}/>
-          <ProtectedRoute path="/admin/prods" exact component={AdminApp} table={'prods'}></ProtectedRoute>
-          <ProtectedRoute path="/admin/users" exact component={AdminApp} table={'users'}></ProtectedRoute>
-          <ProtectedRoute path="/admin/inquiries" exact component={AdminApp} table={'inquiries'}></ProtectedRoute>
-          <ProtectedRoute path="/admin/inquiries/inquiry/:id" component={Inquiry}></ProtectedRoute>
+          <Route path="/about" exact component={About}/>
+          <AdminRoute path="/admin/prods" exact component={AdminApp} table={'prods'}/>
+          <AdminRoute path="/admin/users" exact component={AdminApp} table={'users'}/>
+          <AdminRoute path="/admin/inquiries" exact component={AdminApp} table={'inquiries'}/>
+          <AdminRoute path="/admin/inquiries/inquiry/:id" component={Inquiry}/>
           <Route path="/admin" exact><Redirect to="/admin/prods"/></Route>
           <Route path="/" exact><Redirect to="/home"/></Route>
+          <Route path="/page-not-found" render={() => pageNotFound}/>
           <Redirect to="/page-not-found"/>
         </Switch>
         <BackToTopBtn/>

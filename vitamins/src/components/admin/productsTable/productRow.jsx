@@ -9,7 +9,7 @@ const ProductRow = ({ prod, fn: {handleDeleteProd, setProdToEdit}, index, page }
         <tr>
             <td>{(page * 10) + index + 1}</td>
             <td className="text-success">{name}</td>
-            <td><div style={divStyle}>{htmlEntities(description)}</div></td>
+            <td><div style={divStyle} className="d-flex justify-content-center align-items-center">{htmlEntities(description)}</div></td>
             <td><div className="text-left" style={divStyle}><small>{htmlEntities(more_info)}</small></div></td>
             <td className="text-success">{price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")} ₪</td>
             <td><img src={image} alt=""/></td>

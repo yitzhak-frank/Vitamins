@@ -58,6 +58,11 @@ const AdminNavBar = ({currentTable, fn: {setSortBy, setOrderBy, showAll, showPag
                         <option value="date_created">תאריך</option>
                         {currentTable === 'prods' && <option value="price">מחיר</option>}
                         {currentTable === 'users' && <option value="email">אימייל</option>}
+                        {currentTable === 'inquiries' && <>
+                            <option value="date_updated">עדכון</option>
+                            <option value="status">סטטוס</option>
+                            <option value="isOpened">נפתחו</option>
+                        </>}
                     </select>
                     <select onChange={({target: {value}}) => setOrderBy(value)} id="orderBy" className="d-block mr-3">
                         <option value="-1">סדר יורד</option>

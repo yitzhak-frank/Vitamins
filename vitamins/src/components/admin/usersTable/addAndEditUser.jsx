@@ -37,12 +37,20 @@ const AddAndEditUser = ({user, fn: {closeForm, reRender}}) => {
     }
 
     const onSubmit = async values => {
+        if(
+            user && 
+            !values.password && 
+            values.name  === user.name && 
+            values.email === user.email && 
+            values.role  === user.role
+        )return toast.warning('הזן מידע חדש בשביל לעדכן');
+
         if(values.password) values.pass = values.password;
         delete values.password;
         try {
             if(!user) {
                 let {_id} = await addItem('users', values);
-                await createCart(_id).then(console.log);
+                await createCart(_id);
             } else await editItem('users', user._id, values);
             closeForm(null);
             reRender(val => !val);

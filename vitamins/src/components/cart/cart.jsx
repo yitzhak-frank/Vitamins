@@ -1,5 +1,6 @@
 import store from "../../redux-store/redux-store";
 import CartItem from "./cartItem";
+import useWindowSize from "../../hooks/screenSize";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
@@ -7,8 +8,7 @@ import { useHistory } from "react-router";
 import { checkParentsClass } from "../../services/generalFn";
 import { useEffect, useState } from "react";
 import { CART_INDEX, indexesManager } from "../../redux-store/indexes-reduser";
-import { ADD_TO_CART, CHANGE_AMOUNT, UNSELECT_ALL, REMOVE_FROM_CART, REMOVE_SELECTED, SELECT, SELECT_ALL, selectAllHandler, selectHandler, editCart } from "../../redux-store/cart-reducer";
-import useWindowSize from "../../hooks/screenSize";
+import { CHANGE_AMOUNT, UNSELECT_ALL, REMOVE_FROM_CART, REMOVE_SELECTED, SELECT, SELECT_ALL, selectAllHandler, selectHandler, editCart } from "../../redux-store/cart-reducer";
 
 const Cart = ({cart: _cart, prods, selectedItems: _selectedItems, editCart, selectHandler, selectAllHandler}) => {
 
@@ -76,7 +76,7 @@ const Cart = ({cart: _cart, prods, selectedItems: _selectedItems, editCart, sele
 
     const handleSelectItem = ({target: element} ,prodId) => {
         if(checkParentsClass(element, 'float-right')) return;
-        if(element.className.includes('cart-img') && history.location.pathname === '/products') return;
+        if(element.className.includes('cart-img')) return;
 
         if(!selectedItems.includes(prodId)) selectHandler(SELECT, prodId);
         else selectHandler(REMOVE_SELECTED, prodId);

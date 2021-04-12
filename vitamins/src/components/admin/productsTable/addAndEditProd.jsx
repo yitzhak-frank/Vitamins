@@ -49,6 +49,14 @@ const AddAndEditProd = ({prod, fn: {closeForm, reRender}}) => {
         let imgUrl = await uploadImage();
         if(!imgUrl) return;
         values.image = imgUrl;
+        if(
+            prod && 
+            prod.name        === values.name && 
+            prod.description === values.description && 
+            prod.price       === values.price &&
+            prod.more_info   === values.more_info &&
+            prod.image       === values.image
+        ) return toast.warning('הזן מידע חדש בשביל לעדכן');
         try {
             if(!prod) await addItem('prods', values);
             else await editItem('prods', prod._id, values);

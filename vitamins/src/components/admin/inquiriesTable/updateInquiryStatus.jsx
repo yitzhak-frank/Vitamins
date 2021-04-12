@@ -63,7 +63,7 @@ const UpdateInquiryStatus = ({inquiry: {status, comments, _id: inquiryId}, close
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                     >
-                        <option value="" label="בחר סטטוס"></option>
+                        <option value="" label="בחר סטטוס" disabled></option>
                         <option value="ממתין לטיפול" label="ממתין לטיפול"></option>
                         <option value="בטיפול" label="בטיפול"></option>
                         <option value="טיפול הסתיים" label="טיפול הסתיים"></option>

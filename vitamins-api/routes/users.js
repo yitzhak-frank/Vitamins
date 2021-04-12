@@ -41,7 +41,8 @@ router.get('/count', (req, res) => {
 
 router.get('/searchCount', authToken, authAdmin, (req, res) => {
     let search = req.query.q;
-    usersModel.find({$or: [{name: { $regex: search, $options: 'i'}}, { email: { $regex: search, $options: 'i'}}]})
+    let fields = req.query.fields.split(',');
+    usersModel.find({$or: fields.map(field => ({[field]: { $regex: search, $options: 'i' }}))})
     .countDocuments()
     .then(data => res.json(data))
     .catch(err => res.status(400).json(err));
@@ -60,7 +61,8 @@ router.get('/search', authToken, authAdmin, (req, res) => {
     let limit = Number(req.query.limit) || 10;
 
     let search = req.query.q;
-    usersModel.find({$or: [{name: { $regex: search, $options: 'i'}}, { email: { $regex: search, $options: 'i'}}]})
+    let fields = req.query.fields.split(',');
+    usersModel.find({$or: fields.map(field => ({[field]: { $regex: search, $options: 'i' }}))})
     .sort({[sort]: order}).skip(skip).limit(limit)
     .then(data => res.json(data))
     .catch(err => res.status(400).json(err));
