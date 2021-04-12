@@ -47,10 +47,10 @@ const NavBar = ({indexes, cartItems, indexesManager}) => {
             <div 
                 id="hamburger" 
                 className="hamburger-container d-block d-md-none bg-dark" 
-                onClick={toggleHamburger}
+                style={!hamburger ? {...styles.hamburger} : {...styles.hamburger, boxShadow: 'none'}}
                 onMouseEnter={() => setHamburgerHover(true)}
                 onMouseLeave={() => setHamburgerHover(false)}
-                style={!hamburger ? {...styles.hamburger} : {...styles.hamburger, boxShadow: 'none'}}
+                onClick={toggleHamburger}
             >
                 <div className="bar1" style={hamburger ? styles.bar1 : styles.bars}></div>
                 <div className="bar2" style={hamburger ? styles.bar2 : styles.bars}></div>
@@ -61,10 +61,10 @@ const NavBar = ({indexes, cartItems, indexesManager}) => {
                 "navbar-nav d-block bg-dark w-100 text-right mt-3 pb-3 pt-5 px-3" : 
                 "navbar-nav d-none d-md-flex px-3"
             }> 
-                <NavLink to="/home" className="nav-link mx-2" onClick={() => setHamburger(false)}>בית</NavLink>
-                <NavLink to="/about" className="nav-link mx-2" onClick={() => setHamburger(false)}>אודותינו</NavLink>
-                <NavLink to="/products" className="nav-link mx-2" onClick={() => setHamburger(false)}>מוצרים</NavLink>
-                <NavLink to="/contact" className="nav-link mx-2" onClick={() => setHamburger(false)}>צור קשר</NavLink>
+                <NavLink to="/home"     className="nav-link mx-2" onClick={() => setHamburger(false)}>בית     </NavLink>
+                <NavLink to="/about"    className="nav-link mx-2" onClick={() => setHamburger(false)}>אודותינו</NavLink>
+                <NavLink to="/products" className="nav-link mx-2" onClick={() => setHamburger(false)}>מוצרים  </NavLink>
+                <NavLink to="/contact"  className="nav-link mx-2" onClick={() => setHamburger(false)}>צור קשר </NavLink>
                 {indexes.admin && 
                 <NavLink 
                     to="/admin" 

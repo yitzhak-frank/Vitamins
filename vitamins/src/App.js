@@ -27,7 +27,9 @@ const { getProducts, getCart, indexesManager, store, CART_INDEX, LOGIN_INDEX, US
 const App = () => {
 
   const [indexes, setIndexes] = useState({});
-  
+  /**
+   * On app load get products and user cart
+   */
   useEffect(() => {
     (async () => {
       await store.dispatch(getProducts());
@@ -43,6 +45,10 @@ const App = () => {
     <div className="jumbotron p-5 m-md-5 mt-5 text-center text-danger shadow"><h3>Page Not Found - 404 Error</h3></div>
   </div>;
 
+  /**
+   * When document clicked close login / cart window
+   * @param {*} event View event with the element that clicked
+   */
   const hideCartAndLogin = ({target: element}) => {
     if(indexes.cart) {
       if(!['cart', 'add-to-cart', 'dark', 'img-container'].filter(className => checkParentsClass(element, className)).length)

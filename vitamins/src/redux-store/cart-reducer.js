@@ -29,6 +29,9 @@ export const cartReducer = (state = initCartState, action) => {
     }  
 }
 
+/**
+ * Function that gets the user cart data from the db to redux-store.
+ */
 export const getCart = () => {
     let payload, type = GET_CART;
     return async (dispatch) => {  
@@ -45,6 +48,11 @@ export const getCart = () => {
     }
 }
 
+/**
+ * Function that updates the data in the db and in redux-store.
+ * @param {string} type String with the action consumed.
+ * @param {object | string} prod Object contains the prod data in case of add / edit or prod id in case of delete.
+ */
 export const editCart = (type, prod) => {
     let payload;
     if(!getCurrentUser()) return (dispatch) => dispatch({type, prod});
@@ -61,6 +69,11 @@ export const editCart = (type, prod) => {
     }
 }
 
+/**
+ * 
+ * @param {string} type String with the action consumed.
+ * @returns Function that do the action consumed.
+ */
 const getAction = (type) => {
     switch(type) {
         case ADD_TO_CART: return addToCart;

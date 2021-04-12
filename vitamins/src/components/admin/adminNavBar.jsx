@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
-import useWindowSize from '../../hooks/screenSize';
 import { getNewInquiriesCount } from "../../services/inquiriesService";
+import useWindowSize from '../../hooks/screenSize';
 
 const AdminNavBar = ({currentTable, fn: {setSortBy, setOrderBy, showAll, showPages}}) => {
 

@@ -11,6 +11,9 @@ export const prodsReducer = (state = initProdsState, action) => {
     }
 }
 
+/**
+ * Function that gets the products data from the db to redux-store.
+ */
 export const getProducts = () => {
     let payload, type = GET_PRODS;
     return async (dispatch) => {  

@@ -18,5 +18,9 @@ export const indexesRrducer = (state = initIndexesState, action) => {
         default: return state
     }
 }
-
+/**
+ * 
+ * @param {string} type The index name
+ * @param {bool | string | object} state The index new value.
+ */
 export const indexesManager = (type, state) => ({type, state})

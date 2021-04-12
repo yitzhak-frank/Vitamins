@@ -10,46 +10,45 @@ import { checkParentsClass } from "../../services/generalFn";
 import { useState, useEffect } from "react";
 import { deleteItem, getCount, getSearchCount, getTableData, searchItems } from "../../services/adminService";
 
-
 const AdminApp = ({table}) => {
 
     const searchOptions = {
         prods: [
             {value: 'name', label: 'שם מוצר'},
-            {value: 'price', label: 'מחיר'},
-            {value: 'more_info', label: 'מידע נוסף'},
             {value: 'description', label: 'תיאור'},
+            {value: 'price', label: 'מחיר'},
+            {value: 'more_info', label: 'מידע נוסף'}
         ],
         users: [
             {value: 'name', label: 'שם משתמש'},
             {value: 'email', label: 'כתובת מייל'},
-            {value: 'role', label: 'סיווג'},
+            {value: 'role', label: 'סיווג'}
         ],
         inquiries: [
             {value: 'name', label: 'שם לקוח'},
             {value: 'email', label: 'כתובת מייל'},
-            {value: 'status', label: 'סטטוס'},
             {value: 'msg', label: 'פנייה'},
-            {value: 'comments', label: 'הערות'},
+            {value: 'status', label: 'סטטוס'},
+            {value: 'comments', label: 'הערות'}
         ]
     }
 
     const[currentTable, setCurrentTable] = useState(table);
-    const[tableData, setTableData] = useState({});
-    const[currentPage, setCurrentPage] = useState(0);
-    const[sortBy, setSortBy] = useState('_id');
-    const[orderBy, setOrderBy] = useState(-1);
-    const[itemsCount, setItemsCount] = useState(0);
-    const[pagesCount, setPagesCount] = useState([]);
-    const[amontToShow ,setAmontToShow] = useState(10);
-    const[reRender ,setReRender] = useState(false);
-    const[searchValue, setSearchValue] = useState('');
+    const[tableData,    setTableData]    = useState({});
+    const[currentPage,  setCurrentPage]  = useState(0);
+    const[sortBy,       setSortBy]       = useState('_id');
+    const[orderBy,      setOrderBy]      = useState(-1);
+    const[itemsCount,   setItemsCount]   = useState(0);
+    const[pagesCount,   setPagesCount]   = useState([]);
+    const[amontToShow,  setAmontToShow]  = useState(10);
+    const[reRender,     setReRender]     = useState(false);
+    const[searchValue,  setSearchValue]  = useState('');
     const[searchFields, setSearchFields] = useState('');
-    const[selectValue, setSelectValue] = useState(searchOptions[currentTable][0])
-    const[loading, setLoading] = useState(false);
+    const[selectValue,  setSelectValue]  = useState(searchOptions[currentTable][0])
+    const[loading,      setLoading]      = useState(false);
     const[showAllIndex, setShowAllIndex] = useState(false);
     const[addItemIndex, setAddItemIndex] = useState(false);
-    const[itemToEdit, setItemToEdit] = useState(null);
+    const[itemToEdit,   setItemToEdit]   = useState(null);
 
     useEffect(() => {
         let data, count, pages = [];
@@ -138,9 +137,9 @@ const AdminApp = ({table}) => {
                 isMulti
                 value={selectValue}
                 placeholder="חפש ב..."
-                onChange={(e) => {
-                    setSearchFields(String(e.map(option => option.value)));
-                    setSelectValue(e);
+                onChange={(options) => {
+                    setSearchFields(String(options.map(option => option.value)));
+                    setSelectValue(options);
                 }}
             />
 

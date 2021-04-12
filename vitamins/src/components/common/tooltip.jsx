@@ -6,7 +6,19 @@ const Tooltip = ({content, event}) => {
     const {pageY: top, pageX: left} = event;
 
     const styles = {
-        tooltip: {maxWidth: '220px', backgroundColor: '#343a40', color: 'white', padding: '10px', borderRadius: '5.5px', boxShadow: '0 0 6px gray', whitSpace: 'pre-wrap', position: 'fixed', top: `${top - scrollPositionTop}px`, left: `${left + 10}px`, zIndex: 5}
+        tooltip: {
+            position: 'fixed', 
+            top: `${top - scrollPositionTop}px`, 
+            left: `${left + 10}px`, 
+            zIndex: 5,
+            maxWidth: '220px', 
+            color: 'white', 
+            padding: '10px', 
+            boxShadow: '0 0 6px gray', 
+            whitSpace: 'pre-wrap', 
+            borderRadius: '5.5px', 
+            backgroundColor: '#343a40', 
+        }
     }
 
     return (

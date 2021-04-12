@@ -4,7 +4,6 @@ import useWindowSize from "../../hooks/screenSize";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
-import { useHistory } from "react-router";
 import { checkParentsClass } from "../../services/generalFn";
 import { useEffect, useState } from "react";
 import { CART_INDEX, indexesManager } from "../../redux-store/indexes-reduser";
@@ -16,7 +15,6 @@ const Cart = ({cart: _cart, prods, selectedItems: _selectedItems, editCart, sele
     const[products, setProducts] = useState(prods);
     const[cartProds, setCartProds] = useState([]);
     const[selectedItems, setSelectedItems] = useState(_selectedItems);
-    const history = useHistory();
 
     const { width } = useWindowSize();
 
@@ -37,6 +35,9 @@ const Cart = ({cart: _cart, prods, selectedItems: _selectedItems, editCart, sele
 
     useEffect(() => setCartProdsData(), [cart]);
     
+    /**
+     * Function that gets the data for cart prods.
+     */
     const setCartProdsData = () => {
         if(!cart.items) return;
         setCartProds(cart.items.map(item => {
@@ -48,6 +49,11 @@ const Cart = ({cart: _cart, prods, selectedItems: _selectedItems, editCart, sele
         }).reverse());
     }
 
+    /**
+     * 
+     * @param {string} prodId String with the updeted prod id.
+     * @param {number} pointer Number with the changed amount. 
+     */
     const handelChangeAmount = (prodId, pointer) => {
         let {prod_id, amount, payment} = cart.items[cart.items.findIndex(prod => prod.prod_id === prodId)];
         let prod = {prod_id, amount, payment};
@@ -58,22 +64,41 @@ const Cart = ({cart: _cart, prods, selectedItems: _selectedItems, editCart, sele
         updateCart(CHANGE_AMOUNT, prod, 'התעדכן');
     }
 
+    /**
+     * 
+     * @param {string} prodId String with the removed prod id.
+     */
     const handelRemoveFromCart = (prodId) => {
         updateCart(REMOVE_FROM_CART, prodId, 'הוסר');
         if(selectedItems.includes(prodId)) selectHandler(REMOVE_SELECTED, prodId);
     }
 
+    /**
+     * 
+     * @param {string} type 
+     * @param {object | string} payload Object contains the new prod data or string with prod id in case of delete.
+     * @param {string} msg String to inform the user.
+     */
     const updateCart = async (type, payload, msg) => {
         await editCart(type, payload);
         toastMessages(msg);
     }
 
+    /**
+     * 
+     * @param {string} msg String to inform the user.
+     */
     const toastMessages = (msg) => {
         let error = store.getState().cart.error;
         if(!error) toast(`הפריט ${msg} בהצלחה`);
         else toast.error('משהו השתבש נסה שוב מאוחר יותר');
     }
 
+    /**
+     * 
+     * @param {*} event Object contains the element clicked. 
+     * @param {*} prodId String with the selected prod id.
+     */
     const handleSelectItem = ({target: element} ,prodId) => {
         if(checkParentsClass(element, 'float-right')) return;
         if(element.className.includes('cart-img')) return;

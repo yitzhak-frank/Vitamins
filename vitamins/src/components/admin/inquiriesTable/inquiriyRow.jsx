@@ -6,7 +6,7 @@ const InquiryRow = ({inquiry, fn: {handleDeleteImquiry}, index, page}) => {
 
     return(
         <tr>
-            <td style={{color: isOpened || 'red'}}>{(page * 10) + index + 1}{isOpened || <><br/><small>new</small></>}</td>
+            <td style={{color: isOpened || 'red'}}>{(page * 10) + index + 1}{isOpened || <><br/><small>חדש</small></>}</td>
             <td>{htmlEntities(name)}</td>
             <td>{email}</td>
             <td>{getDateFormated(date_created)}</td>
