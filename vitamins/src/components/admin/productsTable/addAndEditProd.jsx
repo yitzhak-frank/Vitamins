@@ -78,7 +78,9 @@ const AddAndEditProd = ({prod, fn: {closeForm, reRender}}) => {
         onSubmit
     });
 
-
+    /**
+     * @returns {promise} Promise with the old / new image url or null if there is no image.
+     */
     const uploadImage = async () => {
         let image = document.querySelector('#image').files[0];
 
@@ -93,16 +95,34 @@ const AddAndEditProd = ({prod, fn: {closeForm, reRender}}) => {
             return imgUrl;
         } catch(err) { 
             toast.error('אירעה שגיאה בהעלאת התמונה נסה שנית מאוחר יותר');
-            console.dir(err)
             return prod ? prod.image : null 
         }
     }
 
     const displayNewImage = (input) => {
-        if(!input.value) return;
+        if(!input.value || !validateImage(input ,input.files[0])) return;
         let fileReader = new FileReader();
         fileReader.onload = (e) => setProdImg(e.target.result);
         fileReader.readAsDataURL(input.files[0]);
+    }
+
+    /**
+     * Checks the provided file type if image and size if bigger then 5 MB.
+     * @param {object} input Object contains the input file element.
+     * @param {object} file Object contains all file uploaded data.
+     * @returns {boolean} Bool to indicate whether the file is allowed or not.
+     */
+    const validateImage = (input ,file) => {
+        const MB_5 = 1024 * 1024 * 1024 * 5;
+        if(!file.type || !file.type.includes('image')) {
+            toast.warning('!יש להעלות קובץ מסוג תמונה בלבד');
+            input.value = null;
+            return false;
+        } else if(file.size > MB_5) {
+            toast.warning('!אין אפשרות להעלות תמונה מעל 5 מגהבייט');
+            input.value = null;
+            return false;
+        } else return true;
     }
 
     return (

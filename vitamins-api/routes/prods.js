@@ -7,8 +7,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
     let sort  = req.query.sort || '_id';
     let order = Number(req.query.order) || 1;
-    let skip  = Number(req.query.skip)   || 0;
-    let limit = Number(req.query.limit)  || 10;
+    let skip  = Number(req.query.skip)  || 0;
+    let limit = Number(req.query.limit) || 10;
     prodsModel.find()
     .sort({[sort]: order}).skip(skip).limit(limit)
     .then(data => res.json(data))
@@ -30,8 +30,8 @@ router.get('/single/:id', (req, res) => {
 router.get('/search', (req, res) => {
     let sort  = req.query.sort || '_id';
     let order = Number(req.query.order) || 1;
-    let skip  = Number(req.query.skip)   || 0;
-    let limit = Number(req.query.limit)  || 10;
+    let skip  = Number(req.query.skip)  || 0;
+    let limit = Number(req.query.limit) || 10;
 
     let search = req.query.q;
     let fields = req.query.fields.split(',');
