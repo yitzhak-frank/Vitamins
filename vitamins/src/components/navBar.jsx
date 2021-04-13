@@ -3,6 +3,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import useWindowSize from '../hooks/screenSize';
+import logoIcon from '../images/favicon.png';
 
 const NavBar = ({indexes, cartItems, indexesManager}) => {
 
@@ -11,6 +12,14 @@ const NavBar = ({indexes, cartItems, indexesManager}) => {
     const[hamburger, setHamburger] = useState(false);
     const[hamburgerHovar, setHamburgerHover] = useState(false);
     const[url, setUrl] = useState(history.location.pathname);
+    const[logoOver, setLogoOver] = useState(false)
+
+    const calcLogoPosition = () => {
+        let iconsWidth  = 190;
+        let logoWidth   = width > 420 ? 120 : 0;
+        let navbarWidtn = width > 767 ? 385 : 110;
+        return (iconsWidth + (width - iconsWidth - navbarWidtn - (logoWidth/2))/2);
+    }
 
     const styles = {
         icons: {position: 'fixed', top: '20px', left: '20px'},
@@ -19,6 +28,10 @@ const NavBar = ({indexes, cartItems, indexesManager}) => {
         bar1: {width: '40px', height: '5px', margin: '6px 0', transition: '0.4s', backgroundColor: hamburgerHovar ? 'white' : 'silver', transform: 'rotate(-45deg) translate(-9px, 6px)'},
         bar2: {width: '40px', height: '5px', margin: '6px 0', transition: '0.4s', backgroundColor: hamburgerHovar ? 'white' : 'silver', opacity: 0},
         bar3: {width: '40px', height: '5px', margin: '6px 0', transition: '0.4s', backgroundColor: hamburgerHovar ? 'white' : 'silver', transform: 'rotate(45deg) translate(-8px, -8px)'},
+        logo: {position: 'fixed', left: calcLogoPosition(), opacity: logoOver ? 1 : 0.7, transition: '0.5s'},
+        logoTxt: {display: width <= 420 && 'none'},
+        logoImg: {height: '50px',width: '50px'},
+        loginTxt: {width: '90px', overflow: 'auto', whiteSpace: 'nowrap'}
     }
 
     useEffect(() => history.listen((location) => setUrl(location.pathname)) , [history]);
@@ -74,12 +87,22 @@ const NavBar = ({indexes, cartItems, indexesManager}) => {
                 >איזור ניהול</NavLink>}
             </div>
 
+            <NavLink 
+                to="/home"
+                className="logo d-flex align-items-center" 
+                style={styles.logo}
+                onMouseEnter={() => setLogoOver(true)}
+                onMouseLeave={() => setLogoOver(false)}
+            >
+                <h5 className="text-light ml-1 mt-2" style={styles.logoTxt}>ויטמינים</h5>
+                <img src={logoIcon} alt="logo" style={styles.logoImg}/>
+            </NavLink>
             <div className="icons d-flex" style={styles.icons}>
                 <span 
                     className={indexes.login? "active navbar-nav connect ml-3": "navbar-nav connect ml-3" } 
                     onClick={togglLogin}
                 >
-                    <div className="nav-link" id="login-text">
+                    <div className="nav-link" id="login-text" style={styles.logoTxt}>
                         {indexes.user || 'התחבר'}
                     </div>
                     <i className="fas fa-user-circle"></i>

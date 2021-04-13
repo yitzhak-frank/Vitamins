@@ -96,13 +96,6 @@ body header nav {
   height: 75px !important;
 }
 
-body header nav img {
-  height: 40px;
-  border-radius: 10px;
-  margin-right: -35px;
-  margin-left: 35px;
-}
-
 body header i.fa-shopping-cart {
   position: relative;
   color: gray;
@@ -530,7 +523,7 @@ a {
 .table-container tr td img {
   max-height: 50px;
 }
-.fa-plus {
+.fa-plus#add-btn {
   position: fixed;
   bottom: 20px;
   left: 20px;
@@ -543,10 +536,19 @@ a {
   transition: 0.5s;
 }
 
-.fa-plus:hover {
+.fa-plus#add-btn:hover {
   color: #eee;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
+}
+
+@media (max-width: 576px) {
+  .fa-plus#add-btn {
+    bottom: 15px;
+    left: 15px;
+    font-size: 1.5rem;
+    padding: 13.5px;
+  }
 }
 
 .dark-form-cover {
@@ -635,7 +637,6 @@ textarea {
   outline: none;
   border:1px solid #ccc !important;
 }
-
 
 footer #social {
   position: absolute;
