@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { getItemById } from "../../../services/adminService";
-import { getDateFormated, htmlEntities } from "../../../services/generalFn";
+import { checkParentsClass, getDateFormated } from "../../../services/generalFn";
 import useWindowSize from "../../../hooks/screenSize";
 import UpdateInquiryStatus from "./updateInquiryStatus";
 import { updateStatus } from "../../../services/inquiriesService";
@@ -29,6 +29,13 @@ const Inquiry = ({params: { id: inquiryId }}) => {
         setInquiry(inquiry);
     }
 
+    
+    const handleCloseForm = ({target: element}) => {
+        if(!update || checkParentsClass(element, 'form')) return;
+        setUpdaet(null);
+    }
+
+
     return(
         <>
         {inquiry && 
@@ -39,7 +46,7 @@ const Inquiry = ({params: { id: inquiryId }}) => {
             <h1 className="text-center text-info"> פניית לקוח.</h1>
             <div className="row inquiry-details mt-3">
                 <div className="col-12 col-md-6">
-                    <h6 className="text-center text-md-left">שם הלקוח: <span className="text-info">{htmlEntities(name)}</span></h6>
+                    <h6 className="text-center text-md-left">שם הלקוח: <span className="text-info">{name}</span></h6>
                 </div>
                 <div className="col-12 col-md-6">
                     <h6 className="text-center text-md-right">תאריך פנייה: <span className="text-info">{getDateFormated(date_created)}</span></h6>
@@ -47,15 +54,15 @@ const Inquiry = ({params: { id: inquiryId }}) => {
             </div>
             <h4 className="text-info text-center pt-4">תוכן הפנייה:</h4>
             <div className="p-3 pt-1 mx-auto" style={styles.txt}>
-                <p className="text-justify text-dark">{htmlEntities(msg)}</p>
+                <p className="text-justify text-dark">{msg}</p>
             </div>
             <div className="text-center mb-3">
                 <h4 className="text-info ">סטטוס:</h4> 
-                <span className="text-dark">{htmlEntities(status)}</span>
+                <span className="text-dark">{status}</span>
             </div>
             <h4 className="text-info text-center mt-2">הערות:</h4>
             <div className="p-3 pt-1 mx-auto" style={styles.txt}>
-                <p className="text-justify text-dark">{htmlEntities(htmlEntities(comments))}</p>
+                <p className="text-justify text-dark">{comments}</p>
             </div>
             <div className="buttons my-5">
                 <a 
@@ -68,7 +75,11 @@ const Inquiry = ({params: { id: inquiryId }}) => {
             </div>
         </div>
         <div className="top-space" style={{height: '100px'}}></div>
-        {update ? <UpdateInquiryStatus inquiry={inquiry} close={() => setUpdaet(null)}/> :null}
+        {update ? 
+        <div className="dark-form-cover"  onClick={handleCloseForm}>
+            <UpdateInquiryStatus inquiry={inquiry} close={() => setUpdaet(null)}/>
+        </div>
+         :null}
         </>
         }
         </>

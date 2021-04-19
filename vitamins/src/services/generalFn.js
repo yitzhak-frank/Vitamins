@@ -13,4 +13,4 @@ export const getDateFormated = (date) => {
     return `${day}-${month}-${date.getFullYear()}`;
 }
 
-export const htmlEntities = (str) =>  String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+export const htmlEntities = (str) => String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');

@@ -1,6 +1,6 @@
 const Pagination = ({pagesCount, currentPage, setCurrentPage}) => {
     return (
-        <div id="pages-container" className="pages-container">
+        <div id="pages-container" className="pages-container mb-3">
             <button 
                 id="page-prev" 
                 className="page-prev btn btn-secondary"

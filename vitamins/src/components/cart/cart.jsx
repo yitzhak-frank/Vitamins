@@ -69,6 +69,7 @@ const Cart = ({cart: _cart, prods, selectedItems: _selectedItems, editCart, sele
      * @param {string} prodId String with the removed prod id.
      */
     const handelRemoveFromCart = (prodId) => {
+        if(!window.confirm('האם אתה בטוח שברצונך להסיר את הפריט?')) return;
         updateCart(REMOVE_FROM_CART, prodId, 'הוסר');
         if(selectedItems.includes(prodId)) selectHandler(REMOVE_SELECTED, prodId);
     }
@@ -113,6 +114,7 @@ const Cart = ({cart: _cart, prods, selectedItems: _selectedItems, editCart, sele
     }
 
     const removeSelectedFromCart = () => {
+        if(!window.confirm('האם אתה בטוח שברצונך להסיר את הפריטים?')) return;
         selectedItems.forEach(async prodId => await editCart(REMOVE_FROM_CART, prodId));
         selectAllHandler(UNSELECT_ALL, []);
     }

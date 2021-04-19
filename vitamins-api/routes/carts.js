@@ -45,7 +45,7 @@ router.patch('/addItem', authToken, async(req, res) => {
     if(error) return res.status(400).json(error.details);
     try {
         let result;
-        let prod = await cartsModel.findOne({user_id: req.middle.user_id ,items: {$elemMatch: {prod_id: req.body.prod_id}}});
+        let prod = await cartsModel.findOne({user_id: req.middle.user_id, items: {$elemMatch: {prod_id: req.body.prod_id}}});
         if(prod) return res.redirect(307, '/carts/changeItem');    
         else result = await cartsModel.updateOne({user_id: req.middle.user_id}, {$push: {items: req.body}});
         res.json(result);

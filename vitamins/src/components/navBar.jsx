@@ -102,7 +102,7 @@ const NavBar = ({indexes, cartItems, indexesManager}) => {
                     className={indexes.login? "active navbar-nav connect ml-3": "navbar-nav connect ml-3" } 
                     onClick={togglLogin}
                 >
-                    <div className="nav-link" id="login-text" style={styles.logoTxt}>
+                    <div className="nav-link" id="login-text" style={styles.loginTxt}>
                         {indexes.user || 'התחבר'}
                     </div>
                     <i className="fas fa-user-circle"></i>

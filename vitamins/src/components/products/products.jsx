@@ -72,6 +72,7 @@ const Products = ({prods, cart, editCart}) => {
                 :''}
             </div>
         </div>
+        <div className="bottom-space" style={{height: '30px'}}></div>
         </>
     )
 }

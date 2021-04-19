@@ -1,5 +1,4 @@
 import { addItem, editItem, uploadProdImg } from "../../../services/adminService";
-import { htmlEntities } from "../../../services/generalFn";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -175,7 +174,7 @@ const AddAndEditProd = ({prod, fn: {closeForm, reRender}}) => {
                         <textarea 
                             type="text" className="form-control" name="more_info" id="more_info" placeholder="מידע נוסף"
                             style={styles.textarea}
-                            value={htmlEntities(formik.values.more_info)}
+                            value={formik.values.more_info}
                             onChange={formik.handleChange}
                             onFocus={() => setInputsFocus(inputs => ({...inputs, more_info: true}))}
                             onBlur={(e) => {

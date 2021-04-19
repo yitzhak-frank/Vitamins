@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import { getDateFormated, htmlEntities } from "../../../services/generalFn";
+import { getDateFormated } from "../../../services/generalFn";
 
 const InquiryRow = ({inquiry, fn: {handleDeleteImquiry}, index, page}) => {
     const {name, email, date_created, date_updated, status, isOpened, _id} = inquiry;
 
     return(
         <tr>
-            <td style={{color: isOpened || 'red'}}>{(page * 10) + index + 1}{isOpened || <><br/><small>חדש</small></>}</td>
-            <td>{htmlEntities(name)}</td>
+            <td style={{color: isOpened || 'red'}}>{(page * 10) + index + 1} {isOpened || <><br/><small>חדש</small></>}</td>
+            <td>{name}</td>
             <td>{email}</td>
             <td>{getDateFormated(date_created)}</td>
             <td>{status}</td>

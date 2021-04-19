@@ -1,5 +1,5 @@
 import useWindowSize from "../../../hooks/screenSize";
-import { getDateFormated, htmlEntities } from "../../../services/generalFn";
+import { getDateFormated } from "../../../services/generalFn";
 
 const ProductRow = ({ prod, fn: {handleDeleteProd, setProdToEdit}, index, page }) => {
     const {name, price, description, more_info, image, date_created, _id} = prod;
@@ -9,8 +9,8 @@ const ProductRow = ({ prod, fn: {handleDeleteProd, setProdToEdit}, index, page }
         <tr>
             <td>{(page * 10) + index + 1}</td>
             <td className="text-success">{name}</td>
-            <td><div style={divStyle} className="d-flex justify-content-center align-items-center">{htmlEntities(description)}</div></td>
-            <td><div className="text-left" style={divStyle}><small>{htmlEntities(more_info)}</small></div></td>
+            <td><div style={divStyle} className="d-flex justify-content-center align-items-center">{description}</div></td>
+            <td><div className="text-left" style={divStyle}><small>{more_info}</small></div></td>
             <td className="text-success">{price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")} ₪</td>
             <td><img src={image} alt=""/></td>
             <td>{getDateFormated(date_created)}</td>

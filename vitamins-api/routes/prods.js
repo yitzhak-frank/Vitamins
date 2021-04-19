@@ -35,7 +35,7 @@ router.get('/search', (req, res) => {
 
     let search = req.query.q;
     let fields = req.query.fields.split(',');
-    prodsModel.find({$or: fields.map(field => ({[field]: field !== 'price' ? { $regex: search, $options: 'i'} : search}))})
+    prodsModel.find({$or: fields.map(field => ({[field]: field === 'price' ? search : { $regex: search, $options: 'i'} }))})
     .sort({[sort]: order}).skip(skip).limit(limit)
     .then(data => res.json(data))
     .catch(err => res.status(400).json(err));
@@ -50,7 +50,7 @@ router.get('/count', (req, res) => {
 router.get('/searchCount', (req, res) => {
     let search = req.query.q;
     let fields = req.query.fields.split(',');
-    prodsModel.find({$or: fields.map(field => ({[field]: field !== 'price' ? { $regex: search, $options: 'i'} : search}))})
+    prodsModel.find({$or: fields.map(field => ({[field]: field === 'price' ? search : { $regex: search, $options: 'i'} }))})
     .countDocuments()
     .then(data => res.json(data))
     .catch(err => res.status(400).json(err));
