@@ -20,7 +20,8 @@ const Products = ({prods, cart, editCart}) => {
     useEffect(() => setFilteredData(products), [products]);
 
     const handleAddToCart = async (prod_id, price, amount = 1) => {
-        let isProdInCart = cart.items[cart.items.findIndex(item => item.prod_id === prod_id)];
+        let isProdInCart = cart && cart.items[cart.items.findIndex(item => item.prod_id === prod_id)];
+        console.log(isProdInCart, cart)
         if(isProdInCart) {
             let { prod_id, payment} = isProdInCart;
             let prod = {prod_id, amount: isProdInCart.amount, payment};
@@ -77,7 +78,7 @@ const Products = ({prods, cart, editCart}) => {
     )
 }
 
-const mapStateToProps = (state) => ({prods: state.products.prods, cart: state.cart.cart});
+const mapStateToProps = (state) => ({prods: state.products.prods, cart: state.cart && state.cart.cart});
 const mapDispatchToProps = (dispatch) => ({editCart: (type, prod) => dispatch(editCart(type, prod))})
   
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

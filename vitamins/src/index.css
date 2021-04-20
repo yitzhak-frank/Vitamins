@@ -793,10 +793,6 @@ form.inquiry select:hover {
   vertical-align: middle;
 }
 
-/* 
-.home {
-  background-image: url('./images/adam-niescioruk-hWzrJsS8gwI-unsplash.jpg');
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-} */
+.carousel-indicators {
+  z-index: 4 !important;
+}
