@@ -8,29 +8,34 @@ import useWindowSize from '../../hooks/screenSize';
 import store from "../../redux-store/redux-store";
 import Tooltip from "../common/tooltip";
 import BackBtn from "../common/backBtn";
+import useScrollPosition from "../../hooks/scrollPosition";
+import { mobileAndTabletCheck } from "../../services/generalFn";
 
 const ProdDetails = ({match: {params: { id: prodId }}, editCart, cart}) => {
 
     const[amount, setAmount] = useState(1);
     const[product, setProduct] = useState({});
     const[iOver, setIOver] = useState(false);
-    const[tooltip, setTooltip] = useState(null)
+    const[tooltip, setTooltip] = useState(null);
+    const[isMobile] = useState(mobileAndTabletCheck());
 
-    const { width } = useWindowSize()
-
+    const { width } = useWindowSize();
+    const { bottom } = useScrollPosition();
+    
     const styles = {
         image:   {background: `url(${product.image})no-repeat center`, width: '100%', height: '50vh', maxWidth: '800px'},
         more_info: {direction: 'ltr', maxWidth: '800px', columnCount: width > 700 ? 2 : 1, whiteSpace: 'pre-wrap'},
-        bottom:  {height: '75px', backgroundColor: '#ddd'},
+        bottom: {height: '75px', backgroundColor: '#ddd', position: isMobile ? 'unset' : 'fixed', bottom: bottom > 100 ? 0 : 100 - bottom, width: '100%'},
+        inner:   {maxWidth: '800px', height: '75px'},
         amount:  {height: '25px', width: '25px', border: '1px solid gray', fontSize: '14px', outline: 'none',backgroundColor: '#f0f0f0'},
         buttons: {backgroundColor: '#c8c8c8', fontWeight: 'bold', cursor: 'pointer'},
         minus:   {borderBottomLeftRadius: '7px', borderTopLeftRadius: '7px'},
         plus:    {borderBottomRightRadius: '7px', borderTopRightRadius: '7px'},
-        i:       {color: 'white', padding: '18px', fontSize: '1.3rem', borderRadius: '50%', backgroundColor: '#aaaaaa', transition: '0.5s'},
+        i: {color: 'white', padding: '18px', fontSize: '1.3rem', borderRadius: '50%', backgroundColor: '#aaaaaa', transition: '0.5s'},
         iOnHover: {transform: 'scale(1.1)', backgroundColor: '#585858'}
     }
 
-    useEffect(() => getProduct(), [])
+    useEffect(() => getProduct(), []);
 
     const getProduct = async () => {
         let prod = await getProductById(prodId);
@@ -81,37 +86,39 @@ const ProdDetails = ({match: {params: { id: prodId }}, editCart, cart}) => {
         <div className="p-3 pt-5 p-lg-5 mx-auto" style={styles.more_info}>
             <p className="text-justify text-dark">{more_info}</p>
         </div>
-        <div className="bottom d-flex align-items-center justify-content-around" style={styles.bottom}>
-            <div className="amount d-flex">
-                <div 
-                    className="increace plus d-flex justify-content-center" 
-                    style={{...styles.amount, ...styles.buttons, ...styles.plus}} 
-                    onClick={() => changeAmount(1)}
-                >+</div>
-                <div className="text-center current-amount d-flex justify-content-center" style={styles.amount}>{amount}</div>
-                <div 
-                    className="reduce minus d-flex justify-content-center" 
-                    style={{...styles.amount, ...styles.buttons, ...styles.minus}} 
-                    onClick={() => changeAmount(-1)}
-                >-</div>
+        <div className="bottom" style={styles.bottom}>
+            <div className="inner d-flex align-items-center justify-content-around mx-auto" style={styles.inner}>
+                <div className="amount d-flex">
+                    <div 
+                        className="increace plus d-flex justify-content-center" 
+                        style={{...styles.amount, ...styles.buttons, ...styles.plus}} 
+                        onClick={() => changeAmount(1)}
+                    >+</div>
+                    <div className="text-center current-amount d-flex justify-content-center" style={styles.amount}>{amount}</div>
+                    <div 
+                        className="reduce minus d-flex justify-content-center" 
+                        style={{...styles.amount, ...styles.buttons, ...styles.minus}} 
+                        onClick={() => changeAmount(-1)}
+                    >-</div>
+                </div>
+                <h5 className="mt-2 text-center text-success original-price">{price} ₪</h5>
+                {amount > 1 && <span className="text-info prod-final-price">
+                    סך הכל {(price * amount).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")} ₪
+                </span>}      
+                <i 
+                    className="fas fa-cart-plus shadow add-to-cart-2"
+                    style={iOver ? {...styles.i,  ...styles.iOnHover} : styles.i}
+                    onMouseEnter={() => setIOver(true)}
+                    onMouseMove={setTooltip}
+                    onMouseLeave={() => {
+                        setIOver(false);
+                        setTooltip(null);
+                    }}
+                    onClick={() => handleAddToCart()}
+                ></i>
             </div>
-            <h5 className="mt-2 text-center text-success original-price">{price} ₪</h5>
-            {amount > 1 && <span className="text-info prod-final-price">
-                סך הכל {(price * amount).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")} ₪
-            </span>}      
-            <i 
-                className="fas fa-cart-plus shadow add-to-cart-2"
-                style={iOver ? {...styles.i,  ...styles.iOnHover} : styles.i}
-                onMouseEnter={() => setIOver(true)}
-                onMouseMove={setTooltip}
-                onMouseLeave={() => {
-                    setIOver(false);
-                    setTooltip(null);
-                }}
-                onClick={() => handleAddToCart()}
-            ></i>
         </div>
-        <div className="footer-place" style={{height: '100px'}}></div>
+        <div className="footer-and-bottom-space" style={{height: isMobile ? '100px' : '175px'}}></div>
         </>}
         {tooltip ? <Tooltip content={'הוסף לעגלת הקניות'} event={tooltip}/>:null}
         </>

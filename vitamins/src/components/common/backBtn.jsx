@@ -1,5 +1,5 @@
 import { useHistory } from "react-router";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import useWindowSize from "../../hooks/screenSize";
 
 const BackBtn = () => {

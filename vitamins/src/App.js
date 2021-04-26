@@ -42,7 +42,7 @@ const App = () => {
   }, []);
 
   const pageNotFound = <div className="m-3 m-md-5 mt-5 pt-5">
-    <div className="jumbotron p-5 m-md-5 mt-5 text-center text-danger shadow"><h3>Page Not Found - 404 Error</h3></div>
+    <div className="jumbotron p-5 m-md-5 mt-5 text-center text-danger shadow"><h3>{'שגיאה 404 - הדף לא נמצא:('}</h3></div>
   </div>;
 
   /**
