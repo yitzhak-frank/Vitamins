@@ -16,7 +16,7 @@ exports.routesInit = (app) => {
     app.use((req, res) => res.sendFile(path.join(__dirname, '..', 'public', 'index.html')));
 }
 
-exports.fileUploadAccess = (app) => app.use(fileUpload({limits: {fileSize: 50 * 1024 * 1024}}));
+exports.fileUploadAccess = (app) => app.use(fileUpload({limits: {fileSize: 5 * 1024 * 1024}}));
 
 exports.originCors = (app) => {
     app.all('*',  (req, res, next) => {

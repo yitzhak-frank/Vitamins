@@ -112,7 +112,7 @@ const AddAndEditProd = ({prod, fn: {closeForm, reRender}}) => {
      * @returns {boolean} Bool to indicate whether the file is allowed or not.
      */
     const validateImage = (input ,file) => {
-        const MB_5 = 1024 * 1024 * 1024 * 5;
+        const MB_5 = 1024 * 1024 * 5;
         if(!file.type || !file.type.includes('image')) {
             toast.warning('!יש להעלות קובץ מסוג תמונה בלבד');
             input.value = null;

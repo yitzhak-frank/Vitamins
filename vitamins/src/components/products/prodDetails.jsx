@@ -10,6 +10,7 @@ import Tooltip from "../common/tooltip";
 import BackBtn from "../common/backBtn";
 import useScrollPosition from "../../hooks/scrollPosition";
 import { mobileAndTabletCheck } from "../../services/generalFn";
+import { useHistory } from "react-router";
 
 const ProdDetails = ({match: {params: { id: prodId }}, editCart, cart}) => {
 
@@ -19,7 +20,8 @@ const ProdDetails = ({match: {params: { id: prodId }}, editCart, cart}) => {
     const[tooltip, setTooltip] = useState(null);
     const[isMobile] = useState(mobileAndTabletCheck());
 
-    const { width } = useWindowSize();
+    const history    = useHistory();
+    const { width }  = useWindowSize();
     const { bottom } = useScrollPosition();
     
     const styles = {
@@ -37,9 +39,16 @@ const ProdDetails = ({match: {params: { id: prodId }}, editCart, cart}) => {
 
     useEffect(() => getProduct(), []);
 
-    const getProduct = async () => {
-        let prod = await getProductById(prodId);
+    useEffect(() =>  history.listen((location) => {
+        let url = location.pathname.split('/');
+        let id  = url[url.length -1];
+        getProduct(id);
+    }), []);
+
+    const getProduct = async (id = prodId) => {
+        let prod = await getProductById(id);
         setProduct(prod);
+        window.scroll({top:1});
     }
 
     const changeAmount = (pointer) => {

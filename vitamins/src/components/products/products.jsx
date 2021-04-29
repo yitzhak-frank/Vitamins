@@ -21,7 +21,6 @@ const Products = ({prods, cart, editCart}) => {
 
     const handleAddToCart = async (prod_id, price, amount = 1) => {
         let isProdInCart = cart && cart.items[cart.items.findIndex(item => item.prod_id === prod_id)];
-        console.log(isProdInCart, cart)
         if(isProdInCart) {
             let { prod_id, payment} = isProdInCart;
             let prod = {prod_id, amount: isProdInCart.amount, payment};

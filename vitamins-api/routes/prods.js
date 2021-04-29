@@ -59,7 +59,7 @@ router.get('/searchCount', (req, res) => {
 router.post('/addProdImg', authToken, authAdmin, (req, res) => {
     let img = req.files.myImg;
     if(!img) return res.status(400).json({massage: 'you need to send img'});
-    else if(img.size >= 50 * 1024 * 1024) return res.status(400).json({message: 'the file is to big'});
+    else if(img.size >= 5 * 1024 * 1024) return res.status(400).json({message: 'the file is to big'});
     img.mv('public/prods_images/' + img.name, (err) => {
         if(err) return res.status(400).json({err})
     });

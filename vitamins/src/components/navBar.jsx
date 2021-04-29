@@ -34,7 +34,7 @@ const NavBar = ({indexes, cartItems, indexesManager}) => {
         loginTxt: {width: '90px', overflow: 'auto', whiteSpace: 'nowrap'}
     }
 
-    useEffect(() => history.listen((location) => setUrl(location.pathname)) , [history]);
+    useEffect(() => history.listen((location) => setUrl(location.pathname)), [history]);
 
     const togglCart = () => {
         indexesManager(CART_INDEX, !indexes.cart);
